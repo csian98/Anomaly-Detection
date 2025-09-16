@@ -15,20 +15,19 @@
 		<img src="images/logo.png" alt="Logo" width="150" height="150">
 	</a>
 	<h3 align="center">DSCI-565: Anomaly Detection in Network Traffic</h3>	
-
 	<p align="center">
-	University of Southern California<br/>
-    Viterbi School of Engineering
+		University of Southern California<br/>
+		Viterbi School of Engineering
 	<br/>
 	<br/>
-	<a href="https://github.com/DSCI-565">
-		<strong>Explore the docs »</strong>
+	<a href="https://github.com/Anomaly-Detection">
+	<strong>Explore the docs »</strong>
 	</a>
 	<br/>
 	<br/>
-	<a href="https://github.com/DSCI-565/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+	<a href="https://github.com/Anomaly-Detection/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
 	·
-	<a href="https://github.com/DSCI-565/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+	<a href="https://github.com/Anomaly-Detection/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
 	</p>
 </div>
 
