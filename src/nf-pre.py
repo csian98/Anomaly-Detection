@@ -450,8 +450,6 @@ def main():
                             'L7_PROTO'],
         class_column="Attack",
         benign_label="Benign",
-        # SIAN
-        test_column = "Split"
     )
 
     pre_processing = StandardPreProcessing(n_categorical_levels=32)
@@ -459,18 +457,6 @@ def main():
     # transformer = BasicTransformer(n_layers=2, internal_size=128, n_heads=2)
     transformer = BERT(n_layers=2, internal_size=128, n_heads=2)
     classification_head = LastTokenClassificationHead()
-
-    dataset = pd.read_csv(data_path+datasets[1])
-    train_idx, test_idx = train_test_split(
-        dataset.index,
-        test_size=0.2,
-        stratify=dataset["Attack"],
-        random_state=4444
-    )
-
-    dataset["Split"] = "train"
-    dataset.loc[test_idx, "Split"] = "test"
-    dataset.columns
 
     # SIAN
     ft = FlowTransformerMultiClass(pre_processing=pre_processing,
@@ -481,25 +467,16 @@ def main():
                                        window_size=8, mlp_layer_sizes=[128], mlp_dropout=0.1))
 
     df = ft.load_dataset("UNSW-NB15",
-                         dataset,
+                         data_path+datasets[1],
                          specification=flow_format,
-                         evaluation_dataset_sampling=EvaluationDatasetSampling.FilterColumn,
+                         evaluation_dataset_sampling=EvaluationDatasetSampling.LastRows,
                          # evaluation_percent=0.1,
                          cache_path=cache_folder)
     
     # SIAN
-    labels = np.unique(ft.y)
-    ft.multiclass_encoding(labels)
-    
-    # Build the transformer model
-    m = ft.build_model()
-    m.summary()
-    
-    # Compile the model
-    m.compile(optimizer="adam", loss='sparse_categorical_crossentropy', metrics=['accuracy'], jit_compile=True)
-    
-    (train_results, eval_results, final_epoch) = \
-        ft.evaluate(m, batch_size=32, epochs=20, steps_per_epoch=64, early_stopping_patience=5)
+    df["Attack"] = ft.y
+    print(df.shape)
+    df.to_csv("data/nf-pre/NF-UNSW-NB15-v2-pre.csv", index=False)
 
 
 # EP
