@@ -413,7 +413,15 @@ class BERT(BaseSequential):
         return m_x
 
 # Main Function Define
-def main():
+def main(window_size=8,
+         embed_dim=64,
+         n_layers=2,
+         internal_size=128,
+         n_heads=2,
+         batch_size=32,
+         epochs=20,
+         early_stopping_patience=5,
+         random_state=4444):
     print(tf.config.list_physical_devices("GPU"))
 
     data_path = "data/"
@@ -455,9 +463,9 @@ def main():
     )
 
     pre_processing = StandardPreProcessing(n_categorical_levels=32)
-    encoding = RecordLevelEmbed(64)
+    encoding = RecordLevelEmbed(embed_dim)
     # transformer = BasicTransformer(n_layers=2, internal_size=128, n_heads=2)
-    transformer = BERT(n_layers=2, internal_size=128, n_heads=2)
+    transformer = BERT(n_layers=n_layers, internal_size=internal_size, n_heads=n_heads)
     classification_head = LastTokenClassificationHead()
 
     dataset = pd.read_csv(data_path+datasets[1])
@@ -465,7 +473,7 @@ def main():
         dataset.index,
         test_size=0.2,
         stratify=dataset["Attack"],
-        random_state=4444
+        random_state=random_state
     )
 
     dataset["Split"] = "train"
@@ -497,15 +505,26 @@ def main():
     
     # Compile the model
     m.compile(optimizer="adam", loss='sparse_categorical_crossentropy', metrics=['accuracy'], jit_compile=True)
-    
+
+    steps_per_epoch = len(train_idx) // batch_size
     (train_results, eval_results, final_epoch) = \
-        ft.evaluate(m, batch_size=32, epochs=20, steps_per_epoch=64, early_stopping_patience=5)
+        ft.evaluate(m, batch_size=batch_size, epochs=epochs,
+                    steps_per_epoch=steps_per_epoch, early_stopping_patience=early_stopping_patience)
 
 
 # EP
 if __name__ == "__main__":
     #sys.exit(main(sys.argv[1:]))
-    sys.exit(main())
+    sys.exit(main(
+        window_size=8,
+        embed_dim=64,
+        n_layers=2,
+        internal_size=128,
+        n_heads=2,
+        batch_size=64,
+        epochs=20,
+        early_stopping_patience=5,
+        random_state=4444))
 
 
 #fp.close()
