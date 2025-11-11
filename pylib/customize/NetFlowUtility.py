@@ -53,8 +53,15 @@ class NetFlowLabelEncoder:
 # Functions define #
 
 def NetFlowSlicing(df, window_size:int=16):
-    X = np.array([df.iloc[i-window_size:i, :-1].values for i in range(window_size, len(df))], dtype=np.float32)
-    y = np.array([df.iloc[i, -1] for i in range(window_size, len(df))], dtype=np.int32)
+    array = df.to_numpy(dtype=np.float32)
+    features = array[:, :-1]
+    labels = array[:, -1].astype(np.int32)
+
+    # https://numpy.org/devdocs/reference/generated/numpy.lib.stride_tricks.sliding_window_view.html
+    X = np.lib.stride_tricks.sliding_window_view(features, (window_size, features.shape[1]))
+    X = X.reshape(-1, window_size, features.shape[1])
+    y = labels[window_size - 1:]
+    
     return X, y
 
 

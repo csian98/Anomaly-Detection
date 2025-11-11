@@ -37,9 +37,9 @@ le = NetFlowLabelEncoder()
 df.iloc[:, -1] = le.fit_transform(df.iloc[:, -1])
 
 train_idx, temp_idx = train_test_split(
-    df[window_size:].index,
+    df[:-window_size].index,
     test_size=0.3,
-    stratify=df.iloc[window_size:, -1],
+    stratify=df.iloc[:-window_size, -1],
     random_state=random_state
 )
 
