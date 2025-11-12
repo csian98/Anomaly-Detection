@@ -31,8 +31,10 @@ from sklearn.preprocessing import LabelEncoder
 import tensorflow as tf
 from tensorflow.keras import mixed_precision
 from sklearn.model_selection import train_test_split
+from sklearn.utils.class_weight import compute_class_weight
 
 from customize.NetFlowUtility import NetFlowLabelEncoder, NetFlowSlicing, NetFlowBatchLoader
+from customize.NetFlowMetrics import PrecisionMetric, RecallMetric, F1Macro, print_result
 from customize.NetFlowBertClassifier import NetFlowBertClassifier
 
 # dup2 #
@@ -47,14 +49,22 @@ def main(
         data_path:str,
         window_size:int=8,
         batch_size:int=64,
-        epochs:int=20,
-        embed_size:int=32,
+        epochs:int=300,
+        embed_size:int=64,
         n_layers:int=2,
         internal_size:int=128,
         n_heads:int=2,
         dropout:float=0.1,
+        class_weight:bool=False,
+        fout:str=None,
         random_state:int=4444):
-    print(tf.config.list_physical_devices("GPU"))
+    params = locals()
+
+    fp = sys.stdout
+    if fout:
+        fp = open(fout, 'a')
+    
+    print(tf.config.list_physical_devices("GPU"), file=fp)
     # tf.debugging.set_log_device_placement=True
     # mixed_precision.set_global_policy("mixed_float16")
     
@@ -63,9 +73,9 @@ def main(
     df.iloc[:, -1] = le.fit_transform(df.iloc[:, -1])
     
     train_idx, temp_idx = train_test_split(
-        df[:-window_size].index,
+        df.index,
         test_size=0.3,
-        stratify=df.iloc[:-window_size, -1],
+        stratify=df.iloc[:, -1],
         random_state=random_state
     )
     
@@ -76,11 +86,16 @@ def main(
         random_state=random_state
     )
 
+    valid_idx = df.index[window_size-1:]
+    train_mask = np.isin(valid_idx, train_idx)
+    val_mask = np.isin(valid_idx, val_idx)
+    test_mask = np.isin(valid_idx, test_idx)
+
     X, y = NetFlowSlicing(df, window_size=window_size)
     
-    train_ds = NetFlowBatchLoader(X, y, train_idx, batch_size)
-    val_ds = NetFlowBatchLoader(X, y, val_idx, batch_size)
-    test_ds = NetFlowBatchLoader(X, y, test_idx, batch_size)
+    train_ds = NetFlowBatchLoader(X, y, np.where(train_mask)[0], batch_size)
+    val_ds = NetFlowBatchLoader(X, y, np.where(val_mask)[0], batch_size)
+    test_ds = NetFlowBatchLoader(X, y, np.where(test_mask)[0], batch_size)
     
     model = NetFlowBertClassifier(
         embed_size=embed_size,
@@ -91,27 +106,47 @@ def main(
         num_classes=le.size
     )
     
+    metrics = ["accuracy", F1Macro(), PrecisionMetric(), RecallMetric()] # ["accuracy"]
+    
     model.compile(
-        optimizer=tf.keras.optimizers.Adam(1e-3),
+        optimizer=tf.keras.optimizers.Adam(1e-4),
         loss="sparse_categorical_crossentropy",
-        metrics=["accuracy"]
+        metrics=metrics,
     )
     
     # model.build(input_shape=train_ds.element_spec[0].shape)
+
+    monitor = "val_loss"
+    mode = "auto"
+
+    if not class_weight:
+        monitor = "val_f1_macro"
+        mode = "max"
     
     early_stop = tf.keras.callbacks.EarlyStopping(
-        monitor="val_loss",
+        monitor=monitor,
+        mode=mode,
         patience=5,
         restore_best_weights=True
     )
     
     lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(
-        monitor='val_loss',
+        monitor=monitor,
+        mode=mode,
         factor=0.5,
         patience=3,
         min_lr=1e-6,
         verbose=1
     )
+
+    class_weights = None
+    
+    if class_weight:
+        classes = np.unique(y[np.where(train_mask)[0]])
+        class_weights = compute_class_weight("balanced",
+                                             classes=classes,
+                                             y=y[np.where(train_mask)[0]])
+        class_weights = dict(zip(classes, class_weights))
     
     history = model.fit(
         train_ds,
@@ -119,7 +154,22 @@ def main(
         epochs=epochs,
         steps_per_epoch=len(train_idx)//batch_size,
         callbacks=[early_stop, lr_scheduler],
+        class_weight=class_weights,
         verbose=1)
+
+    y_true = y[np.where(test_mask)[0]]
+    y_pred = model.predict(test_ds)
+    y_pred = np.argmax(y_pred, axis=1)
+
+    print("=== Model Training Configuration ===", file=fp)
+    for key, value in params.items():
+        print(f"{key:<15}: {value}", file=fp)
+    print(file=fp)
+    
+    print_result(y_true, y_pred, le, fp)
+
+    if fout:
+        fp.close()
 
 # EP
 if __name__ == "__main__":
@@ -128,12 +178,14 @@ if __name__ == "__main__":
         data_path="data/nf-pre/NF-UNSW-NB15-v2-pre.csv",
         window_size=8,
         batch_size=256,
-        epochs=20,
+        epochs=300,
         embed_size=32,
         n_layers=2,
         internal_size=128,
         n_heads=2,
         dropout=0.1,
+        class_weight=True,
+        fout="tmp/metrics.txt",
         random_state=4444))
 
 #fp.close()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """NetFlowUtility.py
 Description
-Flow based BERT model
+Utility functions for NetFlowBertClassifier
 
 Date
 Nov 10, 2025
@@ -17,7 +17,6 @@ warnings.filterwarnings("ignore")
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
-from tensorflow.keras import layers, models
 
 # Data Structures define - class #
 
