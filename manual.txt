@@ -1,0 +1,1128 @@
+MANUAL HYPER-PARAMETER TUNNING
+
+=== PARAMETERS ===
+window_size = [4, 8, 16, 32]
+batch_size = [256]
+epochs(max) = [300]
+n_layers = [2, 4, 8]
+embed_size = [64]
+internal_size = [128, 256]
+n_heads = [2, 4, 8]
+dropout = [0.1, 0.2, 0.5],
+class_weight = [True, False]
+
+
+=== TRIAL 1 ===
+# CONFIGURATION
+window_size = 4
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 2
+dropout = 0.2
+class_weight = True
+
+# RESULT: early stop: 26/300
+
+=== Overall Metrics ===
+--- Micro F1-score: 0.9853
+--- Macro F1-score: 0.6259
+--- Overall Accuracy: 0.9853
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 244, FP: 178, TN: 358019, FN: 101
+-- Precision: 0.5782 (244 / 422)
+-- Recall: 0.7072 (244 / 345)
+-- Specificity: 0.9995 (358019 / 358197)
+-- Accuracy: 0.9992
+-- F1-score: 0.6362
+-- Balanced Accuracy: 85.3375
+
+[Backdoor]
+-- TP: 268, FP: 1102, TN: 357115, FN: 57
+-- Precision: 0.1956 (268 / 1370)
+-- Recall: 0.8246 (268 / 325)
+-- Specificity: 0.9969 (357115 / 358217)
+-- Accuracy: 0.9968
+-- F1-score: 0.3162
+-- Balanced Accuracy: 91.0770
+
+[Benign]
+-- TP: 342355, FP: 27, TN: 14231, FN: 1929
+-- Precision: 0.9999 (342355 / 342382)
+-- Recall: 0.9944 (342355 / 344284)
+-- Specificity: 0.9981 (14231 / 14258)
+-- Accuracy: 0.9945
+-- F1-score: 0.9972
+-- Balanced Accuracy: 99.6252
+
+[DoS]
+-- TP: 239, FP: 1229, TN: 356444, FN: 630
+-- Precision: 0.1628 (239 / 1468)
+-- Recall: 0.2750 (239 / 869)
+-- Specificity: 0.9966 (356444 / 357673)
+-- Accuracy: 0.9948
+-- F1-score: 0.2045
+-- Balanced Accuracy: 63.5796
+
+[Exploits]
+-- TP: 3004, FP: 538, TN: 353271, FN: 1729
+-- Precision: 0.8481 (3004 / 3542)
+-- Recall: 0.6347 (3004 / 4733)
+-- Specificity: 0.9985 (353271 / 353809)
+-- Accuracy: 0.9937
+-- F1-score: 0.7260
+-- Balanced Accuracy: 81.6586
+
+[Fuzzers]
+-- TP: 3212, FP: 1059, TN: 354136, FN: 135
+-- Precision: 0.7520 (3212 / 4271)
+-- Recall: 0.9597 (3212 / 3347)
+-- Specificity: 0.9970 (354136 / 355195)
+-- Accuracy: 0.9967
+-- F1-score: 0.8433
+-- Balanced Accuracy: 97.8342
+
+[Generic]
+-- TP: 1954, FP: 190, TN: 355868, FN: 530
+-- Precision: 0.9114 (1954 / 2144)
+-- Recall: 0.7866 (1954 / 2484)
+-- Specificity: 0.9995 (355868 / 356058)
+-- Accuracy: 0.9980
+-- F1-score: 0.8444
+-- Balanced Accuracy: 89.3050
+
+[Reconnaissance]
+-- TP: 1757, FP: 261, TN: 356364, FN: 160
+-- Precision: 0.8707 (1757 / 2018)
+-- Recall: 0.9165 (1757 / 1917)
+-- Specificity: 0.9993 (356364 / 356625)
+-- Accuracy: 0.9988
+-- F1-score: 0.8930
+-- Balanced Accuracy: 95.7902
+
+[Shellcode]
+-- TP: 213, FP: 157, TN: 358171, FN: 1
+-- Precision: 0.5757 (213 / 370)
+-- Recall: 0.9953 (213 / 214)
+-- Specificity: 0.9996 (358171 / 358328)
+-- Accuracy: 0.9996
+-- F1-score: 0.7295
+-- Balanced Accuracy: 99.7444
+
+[Worms]
+-- TP: 20, FP: 535, TN: 357983, FN: 4
+-- Precision: 0.0360 (20 / 555)
+-- Recall: 0.8333 (20 / 24)
+-- Specificity: 0.9985 (357983 / 358518)
+-- Accuracy: 0.9985
+-- F1-score: 0.0691
+-- Balanced Accuracy: 91.5921
+
+
+=== TRIAL 2 ===
+# CONFIGURATION
+window_size = 4
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 2
+dropout = 0.2
+class_weight = False *
+
+# RESULT: early stop: 9/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9850
+--- Macro F1-score: 0.5873
+--- Overall Accuracy: 0.9850
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 229, FP: 71, TN: 358126, FN: 116
+-- Precision: 0.7633 (229 / 300)
+-- Recall: 0.6638 (229 / 345)
+-- Specificity: 0.9998 (358126 / 358197)
+-- Accuracy: 0.9995
+-- F1-score: 0.7101
+-- Balanced Accuracy: 83.1785
+
+[Backdoor]
+-- TP: 27, FP: 187, TN: 358030, FN: 298
+-- Precision: 0.1262 (27 / 214)
+-- Recall: 0.0831 (27 / 325)
+-- Specificity: 0.9995 (358030 / 358217)
+-- Accuracy: 0.9986
+-- F1-score: 0.1002
+-- Balanced Accuracy: 54.1277
+
+[Benign]
+-- TP: 343788, FP: 2572, TN: 11686, FN: 496
+-- Precision: 0.9926 (343788 / 346360)
+-- Recall: 0.9986 (343788 / 344284)
+-- Specificity: 0.8196 (11686 / 14258)
+-- Accuracy: 0.9914
+-- F1-score: 0.9956
+-- Balanced Accuracy: 90.9085
+
+[DoS]
+-- TP: 263, FP: 627, TN: 357046, FN: 606
+-- Precision: 0.2955 (263 / 890)
+-- Recall: 0.3026 (263 / 869)
+-- Specificity: 0.9982 (357046 / 357673)
+-- Accuracy: 0.9966
+-- F1-score: 0.2990
+-- Balanced Accuracy: 65.0447
+
+[Exploits]
+-- TP: 2752, FP: 815, TN: 352994, FN: 1981
+-- Precision: 0.7715 (2752 / 3567)
+-- Recall: 0.5814 (2752 / 4733)
+-- Specificity: 0.9977 (352994 / 353809)
+-- Accuracy: 0.9922
+-- F1-score: 0.6631
+-- Balanced Accuracy: 78.9573
+
+[Fuzzers]
+-- TP: 2418, FP: 612, TN: 354583, FN: 929
+-- Precision: 0.7980 (2418 / 3030)
+-- Recall: 0.7224 (2418 / 3347)
+-- Specificity: 0.9983 (354583 / 355195)
+-- Accuracy: 0.9957
+-- F1-score: 0.7584
+-- Balanced Accuracy: 86.0358
+
+[Generic]
+-- TP: 1839, FP: 162, TN: 355896, FN: 645
+-- Precision: 0.9190 (1839 / 2001)
+-- Recall: 0.7403 (1839 / 2484)
+-- Specificity: 0.9995 (355896 / 356058)
+-- Accuracy: 0.9977
+-- F1-score: 0.8201
+-- Balanced Accuracy: 86.9942
+
+[Reconnaissance]
+-- TP: 1721, FP: 245, TN: 356380, FN: 196
+-- Precision: 0.8754 (1721 / 1966)
+-- Recall: 0.8978 (1721 / 1917)
+-- Specificity: 0.9993 (356380 / 356625)
+-- Accuracy: 0.9988
+-- F1-score: 0.8864
+-- Balanced Accuracy: 94.8535
+
+[Shellcode]
+-- TP: 137, FP: 77, TN: 358251, FN: 77
+-- Precision: 0.6402 (137 / 214)
+-- Recall: 0.6402 (137 / 214)
+-- Specificity: 0.9998 (358251 / 358328)
+-- Accuracy: 0.9996
+-- F1-score: 0.6402
+-- Balanced Accuracy: 81.9986
+
+[Worms]
+-- TP: 0, FP: 0, TN: 358518, FN: 24
+-- Precision: 0.0000 (0 / 0)
+-- Recall: 0.0000 (0 / 24)
+-- Specificity: 1.0000 (358518 / 358518)
+-- Accuracy: 0.9999
+-- F1-score: 0.0000
+-- Balanced Accuracy: 50.0000
+
+
+=== TRIAL 3 ===
+# CONFIGURATION
+window_size = 4
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 2
+dropout = 0.5 *
+class_weight = True
+
+# RESULT: early stop: 63/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9855
+--- Macro F1-score: 0.6057
+--- Overall Accuracy: 0.9855
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 287, FP: 671, TN: 357526, FN: 58
+
+-- Precision: 0.2996 (287 / 958)
+-- Recall: 0.8319 (287 / 345)
+-- Specificity: 0.9981 (357526 / 358197)
+-- Accuracy: 0.9980
+-- F1-score: 0.4405
+-- Balanced Accuracy: 91.5005
+
+[Backdoor]
+-- TP: 261, FP: 1200, TN: 357017, FN: 64
+-- Precision: 0.1786 (261 / 1461)
+-- Recall: 0.8031 (261 / 325)
+-- Specificity: 0.9967 (357017 / 358217)
+-- Accuracy: 0.9965
+-- F1-score: 0.2923
+-- Balanced Accuracy: 89.9863
+
+[Benign]
+-- TP: 342333, FP: 30, TN: 14228, FN: 1951
+-- Precision: 0.9999 (342333 / 342363)
+-- Recall: 0.9943 (342333 / 344284)
+-- Specificity: 0.9979 (14228 / 14258)
+-- Accuracy: 0.9945
+-- F1-score: 0.9971
+-- Balanced Accuracy: 99.6115
+
+[DoS]
+-- TP: 148, FP: 524, TN: 357149, FN: 721
+-- Precision: 0.2202 (148 / 672)
+-- Recall: 0.1703 (148 / 869)
+-- Specificity: 0.9985 (357149 / 357673)
+-- Accuracy: 0.9965
+-- F1-score: 0.1921
+-- Balanced Accuracy: 58.4423
+
+[Exploits]
+-- TP: 3132, FP: 567, TN: 353242, FN: 1601
+-- Precision: 0.8467 (3132 / 3699)
+-- Recall: 0.6617 (3132 / 4733)
+-- Specificity: 0.9984 (353242 / 353809)
+
+-- Accuracy: 0.9940
+-- F1-score: 0.7429
+-- Balanced Accuracy: 83.0067
+
+[Fuzzers]
+-- TP: 3198, FP: 1096, TN: 354099, FN: 149
+-- Precision: 0.7448 (3198 / 4294)
+-- Recall: 0.9555 (3198 / 3347)
+-- Specificity: 0.9969 (354099 / 355195)
+-- Accuracy: 0.9965
+-- F1-score: 0.8371
+-- Balanced Accuracy: 97.6198
+
+[Generic]
+-- TP: 1978, FP: 224, TN: 355834, FN: 506
+-- Precision: 0.8983 (1978 / 2202)
+-- Recall: 0.7963 (1978 / 2484)
+-- Specificity: 0.9994 (355834 / 356058)
+-- Accuracy: 0.9980
+-- F1-score: 0.8442
+-- Balanced Accuracy: 89.7834
+
+[Reconnaissance]
+-- TP: 1780, FP: 381, TN: 356244, FN: 137
+-- Precision: 0.8237 (1780 / 2161)
+-- Recall: 0.9285 (1780 / 1917)
+-- Specificity: 0.9989 (356244 / 356625)
+-- Accuracy: 0.9986
+-- F1-score: 0.8730
+-- Balanced Accuracy: 96.3733
+
+[Shellcode]
+-- TP: 214, FP: 150, TN: 358178, FN: 0
+-- Precision: 0.5879 (214 / 364)
+-- Recall: 1.0000 (214 / 214)
+-- Specificity: 0.9996 (358178 / 358328)
+-- Accuracy: 0.9996
+-- F1-score: 0.7405
+-- Balanced Accuracy: 99.9791
+
+[Worms]
+-- TP: 19, FP: 349, TN: 358169, FN: 5
+-- Precision: 0.0516 (19 / 368)
+-- Recall: 0.7917 (19 / 24)
+-- Specificity: 0.9990 (358169 / 358518)
+-- Accuracy: 0.9990
+-- F1-score: 0.0969
+-- Balanced Accuracy: 89.5347
+
+
+=== TRIAL 4 ===
+# CONFIGURATION
+window_size = 4
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 2
+dropout = 0.1 *
+class_weight = True
+
+# RESULT: early stop: 76/300
+=== Label Metrics ===
+[Analysis]
+-- TP: 280, FP: 617, TN: 357580, FN: 65
+-- Precision: 0.3122 (280 / 897)
+-- Recall: 0.8116 (280 / 345)
+-- Specificity: 0.9983 (357580 / 358197)
+-- Accuracy: 0.9981
+-- F1-score: 0.4509
+-- Balanced Accuracy: 90.4936
+
+[Backdoor]
+-- TP: 268, FP: 1087, TN: 357130, FN: 57
+-- Precision: 0.1978 (268 / 1355)
+-- Recall: 0.8246 (268 / 325)
+-- Specificity: 0.9970 (357130 / 358217)
+-- Accuracy: 0.9968
+-- F1-score: 0.3190
+-- Balanced Accuracy: 91.0790
+
+[Benign]
+-- TP: 342377, FP: 12, TN: 14246, FN: 1907
+-- Precision: 1.0000 (342377 / 342389)
+-- Recall: 0.9945 (342377 / 344284)
+-- Specificity: 0.9992 (14246 / 14258)
+-- Accuracy: 0.9946
+-- F1-score: 0.9972
+-- Balanced Accuracy: 99.6810
+
+[DoS]
+-- TP: 207, FP: 814, TN: 356859, FN: 662
+-- Precision: 0.2027 (207 / 1021)
+-- Recall: 0.2382 (207 / 869)
+-- Specificity: 0.9977 (356859 / 357673)
+-- Accuracy: 0.9959
+-- F1-score: 0.2190
+-- Balanced Accuracy: 61.7965
+
+[Exploits]
+-- TP: 3164, FP: 490, TN: 353319, FN: 1569
+-- Precision: 0.8659 (3164 / 3654)
+-- Recall: 0.6685 (3164 / 4733)
+-- Specificity: 0.9986 (353319 / 353809)
+-- Accuracy: 0.9943
+-- F1-score: 0.7545
+-- Balanced Accuracy: 83.3556
+
+[Fuzzers]
+-- TP: 3237, FP: 1084, TN: 354111, FN: 110
+-- Precision: 0.7491 (3237 / 4321)
+-- Recall: 0.9671 (3237 / 3347)
+-- Specificity: 0.9969 (354111 / 355195)
+-- Accuracy: 0.9967
+-- F1-score: 0.8443
+-- Balanced Accuracy: 98.2041
+
+[Generic]
+-- TP: 1976, FP: 214, TN: 355844, FN: 508
+-- Precision: 0.9023 (1976 / 2190)
+-- Recall: 0.7955 (1976 / 2484)
+-- Specificity: 0.9994 (355844 / 356058)
+-- Accuracy: 0.9980
+-- F1-score: 0.8455
+-- Balanced Accuracy: 89.7445
+
+[Reconnaissance]
+-- TP: 1779, FP: 322, TN: 356303, FN: 138
+-- Precision: 0.8467 (1779 / 2101)
+-- Recall: 0.9280 (1779 / 1917)
+-- Specificity: 0.9991 (356303 / 356625)
+-- Accuracy: 0.9987
+-- F1-score: 0.8855
+-- Balanced Accuracy: 96.3555
+
+[Shellcode]
+-- TP: 214, FP: 142, TN: 358186, FN: 0
+-- Precision: 0.6011 (214 / 356)
+-- Recall: 1.0000 (214 / 214)
+-- Specificity: 0.9996 (358186 / 358328)
+-- Accuracy: 0.9996
+-- F1-score: 0.7509
+-- Balanced Accuracy: 99.9802
+
+[Worms]
+-- TP: 17, FP: 241, TN: 358277, FN: 7
+-- Precision: 0.0659 (17 / 258)
+-- Recall: 0.7083 (17 / 24)
+-- Specificity: 0.9993 (358277 / 358518)
+-- Accuracy: 0.9993
+-- F1-score: 0.1206
+-- Balanced Accuracy: 85.3831
+
+
+=== TRIAL 5 ===
+# CONFIGURATION
+window_size = 8 *
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 2
+dropout = 0.2
+class_weight = True
+
+# RESULT: early stop: 60/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9868
+--- Macro F1-score: 0.6329
+--- Overall Accuracy: 0.9868
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 270, FP: 625, TN: 357571, FN: 75
+-- Precision: 0.3017 (270 / 895)
+-- Recall: 0.7826 (270 / 345)
+-- Specificity: 0.9983 (357571 / 358196)
+-- Accuracy: 0.9980
+-- F1-score: 0.4355
+-- Balanced Accuracy: 89.0432
+
+[Backdoor]
+-- TP: 253, FP: 531, TN: 357685, FN: 72
+-- Precision: 0.3227 (253 / 784)
+-- Recall: 0.7785 (253 / 325)
+-- Specificity: 0.9985 (357685 / 358216)
+-- Accuracy: 0.9983
+-- F1-score: 0.4563
+-- Balanced Accuracy: 88.8490
+
+[Benign]
+-- TP: 342419, FP: 21, TN: 14237, FN: 1864
+-- Precision: 0.9999 (342419 / 342440)
+-- Recall: 0.9946 (342419 / 344283)
+-- Specificity: 0.9985 (14237 / 14258)
+-- Accuracy: 0.9947
+-- F1-score: 0.9973
+-- Balanced Accuracy: 99.6556
+
+[DoS]
+-- TP: 349, FP: 818, TN: 356854, FN: 520
+-- Precision: 0.2991 (349 / 1167)
+-- Recall: 0.4016 (349 / 869)
+-- Specificity: 0.9977 (356854 / 357672)
+-- Accuracy: 0.9963
+-- F1-score: 0.3428
+-- Balanced Accuracy: 69.9662
+
+[Exploits]
+-- TP: 3249, FP: 485, TN: 353323, FN: 1484
+-- Precision: 0.8701 (3249 / 3734)
+-- Recall: 0.6865 (3249 / 4733)
+-- Specificity: 0.9986 (353323 / 353808)
+-- Accuracy: 0.9945
+-- F1-score: 0.7675
+-- Balanced Accuracy: 84.2543
+
+[Fuzzers]
+-- TP: 3156, FP: 1030, TN: 354164, FN: 191
+-- Precision: 0.7539 (3156 / 4186)
+-- Recall: 0.9429 (3156 / 3347)
+-- Specificity: 0.9971 (354164 / 355194)
+-- Accuracy: 0.9966
+-- F1-score: 0.8379
+-- Balanced Accuracy: 97.0017
+
+[Generic]
+-- TP: 2168, FP: 285, TN: 355772, FN: 316
+-- Precision: 0.8838 (2168 / 2453)
+-- Recall: 0.8728 (2168 / 2484)
+-- Specificity: 0.9992 (355772 / 356057)
+-- Accuracy: 0.9983
+-- F1-score: 0.8783
+-- Balanced Accuracy: 93.5993
+
+[Reconnaissance]
+-- TP: 1727, FP: 327, TN: 356297, FN: 190
+-- Precision: 0.8408 (1727 / 2054)
+-- Recall: 0.9009 (1727 / 1917)
+-- Specificity: 0.9991 (356297 / 356624)
+-- Accuracy: 0.9986
+-- F1-score: 0.8698
+-- Balanced Accuracy: 94.9985
+
+[Shellcode]
+-- TP: 212, FP: 218, TN: 358109, FN: 2
+-- Precision: 0.4930 (212 / 430)
+-- Recall: 0.9907 (212 / 214)
+-- Specificity: 0.9994 (358109 / 358327)
+-- Accuracy: 0.9994
+-- F1-score: 0.6584
+-- Balanced Accuracy: 99.5023
+
+[Worms]
+-- TP: 18, FP: 380, TN: 358137, FN: 6
+-- Precision: 0.0452 (18 / 398)
+-- Recall: 0.7500 (18 / 24)
+-- Specificity: 0.9989 (358137 / 358517)
+-- Accuracy: 0.9989
+-- F1-score: 0.0853
+-- Balanced Accuracy: 87.4470
+
+
+=== TRIAL 6 ===
+# CONFIGURATION
+window_size = 16 *
+batch_size = 256
+epochs = 300
+n_layers = 4
+embed_size = 64
+internal_size = 256
+n_heads = 2
+dropout = 0.2
+class_weight = True
+
+# RESULT: early stop: 57/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9852
+--- Macro F1-score: 0.5935
+--- Overall Accuracy: 0.9852
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 232, FP: 1033, TN: 357162, FN: 113
+-- Precision: 0.1834 (232 / 1265)
+-- Recall: 0.6725 (232 / 345)
+-- Specificity: 0.9971 (357162 / 358195)
+-- Accuracy: 0.9968
+-- F1-score: 0.2882
+-- Balanced Accuracy: 83.4790
+
+[Backdoor]
+-- TP: 209, FP: 1054, TN: 357161, FN: 116
+-- Precision: 0.1655 (209 / 1263)
+-- Recall: 0.6431 (209 / 325)
+-- Specificity: 0.9971 (357161 / 358215)
+-- Accuracy: 0.9967
+-- F1-score: 0.2632
+-- Balanced Accuracy: 82.0067
+
+[Benign]
+-- TP: 342474, FP: 19, TN: 14239, FN: 1808
+-- Precision: 0.9999 (342474 / 342493)
+-- Recall: 0.9947 (342474 / 344282)
+-- Specificity: 0.9987 (14239 / 14258)
+-- Accuracy: 0.9949
+-- F1-score: 0.9973
+-- Balanced Accuracy: 99.6708
+
+[DoS]
+-- TP: 204, FP: 793, TN: 356878, FN: 665
+-- Precision: 0.2046 (204 / 997)
+-- Recall: 0.2348 (204 / 869)
+-- Specificity: 0.9978 (356878 / 357671)
+-- Accuracy: 0.9959
+-- F1-score: 0.2186
+-- Balanced Accuracy: 61.6268
+
+
+[Exploits]
+-- TP: 3192, FP: 465, TN: 353342, FN: 1541
+-- Precision: 0.8728 (3192 / 3657)
+-- Recall: 0.6744 (3192 / 4733)
+-- Specificity: 0.9987 (353342 / 353807)
+-- Accuracy: 0.9944
+-- F1-score: 0.7609
+-- Balanced Accuracy: 83.6550
+
+[Fuzzers]
+-- TP: 3061, FP: 1029, TN: 354164, FN: 286
+-- Precision: 0.7484 (3061 / 4090)
+-- Recall: 0.9146 (3061 / 3347)
+-- Specificity: 0.9971 (354164 / 355193)
+-- Accuracy: 0.9963
+-- F1-score: 0.8232
+-- Balanced Accuracy: 95.5827
+
+[Generic]
+-- TP: 1986, FP: 222, TN: 355834, FN: 498
+-- Precision: 0.8995 (1986 / 2208)
+-- Recall: 0.7995 (1986 / 2484)
+-- Specificity: 0.9994 (355834 / 356056)
+-- Accuracy: 0.9980
+-- F1-score: 0.8465
+-- Balanced Accuracy: 89.9447
+
+[Reconnaissance]
+-- TP: 1640, FP: 324, TN: 356299, FN: 277
+-- Precision: 0.8350 (1640 / 1964)
+-- Recall: 0.8555 (1640 / 1917)
+-- Specificity: 0.9991 (356299 / 356623)
+-- Accuracy: 0.9983
+-- F1-score: 0.8451
+-- Balanced Accuracy: 92.7297
+
+[Shellcode]
+-- TP: 212, FP: 144, TN: 358182, FN: 2
+-- Precision: 0.5955 (212 / 356)
+-- Recall: 0.9907 (212 / 214)
+-- Specificity: 0.9996 (358182 / 358326)
+-- Accuracy: 0.9996
+-- F1-score: 0.7439
+-- Balanced Accuracy: 99.5126
+
+[Worms]
+-- TP: 20, FP: 227, TN: 358289, FN: 4
+-- Precision: 0.0810 (20 / 247)
+-- Recall: 0.8333 (20 / 24)
+-- Specificity: 0.9994 (358289 / 358516)
+-- Accuracy: 0.9994
+-- F1-score: 0.1476
+-- Balanced Accuracy: 91.6350
+
+
+=== TRIAL 7 ===
+# CONFIGURATION
+window_size = 8 *
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 4 *
+dropout = 0.2
+class_weight = True
+
+# RESULT: early stop: 52/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9871
+--- Macro F1-score: 0.6424
+--- Overall Accuracy: 0.9871
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 259, FP: 640, TN: 357556, FN: 86
+-- Precision: 0.2881 (259 / 899)
+-- Recall: 0.7507 (259 / 345)
+-- Specificity: 0.9982 (357556 / 358196)
+-- Accuracy: 0.9980
+-- F1-score: 0.4164
+-- Balanced Accuracy: 87.4469
+
+[Backdoor]
+-- TP: 254, FP: 516, TN: 357700, FN: 71
+-- Precision: 0.3299 (254 / 770)
+-- Recall: 0.7815 (254 / 325)
+-- Specificity: 0.9986 (357700 / 358216)
+-- Accuracy: 0.9984
+-- F1-score: 0.4639
+-- Balanced Accuracy: 89.0049
+
+[Benign]
+-- TP: 342449, FP: 22, TN: 14236, FN: 1834
+-- Precision: 0.9999 (342449 / 342471)
+-- Recall: 0.9947 (342449 / 344283)
+-- Specificity: 0.9985 (14236 / 14258)
+-- Accuracy: 0.9948
+-- F1-score: 0.9973
+-- Balanced Accuracy: 99.6565
+
+[DoS]
+-- TP: 341, FP: 852, TN: 356820, FN: 528
+-- Precision: 0.2858 (341 / 1193)
+-- Recall: 0.3924 (341 / 869)
+-- Specificity: 0.9976 (356820 / 357672)
+-- Accuracy: 0.9962
+-- F1-score: 0.3307
+-- Balanced Accuracy: 69.5011
+
+[Exploits]
+-- TP: 3306, FP: 525, TN: 353283, FN: 1427
+-- Precision: 0.8630 (3306 / 3831)
+-- Recall: 0.6985 (3306 / 4733)
+-- Specificity: 0.9985 (353283 / 353808)
+-- Accuracy: 0.9946
+-- F1-score: 0.7721
+-- Balanced Accuracy: 84.8508
+
+[Fuzzers]
+-- TP: 3157, FP: 1049, TN: 354145, FN: 190
+-- Precision: 0.7506 (3157 / 4206)
+-- Recall: 0.9432 (3157 / 3347)
+-- Specificity: 0.9970 (354145 / 355194)
+-- Accuracy: 0.9965
+-- F1-score: 0.8360
+-- Balanced Accuracy: 97.0140
+
+[Generic]
+-- TP: 2161, FP: 229, TN: 355828, FN: 323
+-- Precision: 0.9042 (2161 / 2390)
+-- Recall: 0.8700 (2161 / 2484)
+-- Specificity: 0.9994 (355828 / 356057)
+-- Accuracy: 0.9985
+-- F1-score: 0.8867
+-- Balanced Accuracy: 93.4662
+
+[Reconnaissance]
+-- TP: 1749, FP: 356, TN: 356268, FN: 168
+-- Precision: 0.8309 (1749 / 2105)
+-- Recall: 0.9124 (1749 / 1917)
+-- Specificity: 0.9990 (356268 / 356624)
+-- Accuracy: 0.9985
+-- F1-score: 0.8697
+-- Balanced Accuracy: 95.5682
+
+[Shellcode]
+-- TP: 212, FP: 136, TN: 358191, FN: 2
+-- Precision: 0.6092 (212 / 348)
+-- Recall: 0.9907 (212 / 214)
+-- Specificity: 0.9996 (358191 / 358327)
+-- Accuracy: 0.9996
+-- F1-score: 0.7544
+-- Balanced Accuracy: 99.5137
+
+[Worms]
+-- TP: 17, FP: 311, TN: 358206, FN: 7
+-- Precision: 0.0518 (17 / 328)
+-- Recall: 0.7083 (17 / 24)
+-- Specificity: 0.9991 (358206 / 358517)
+-- Accuracy: 0.9991
+-- F1-score: 0.0966
+-- Balanced Accuracy: 85.3733
+
+
+=== TRIAL 8 ===
+# CONFIGURATION
+window_size = 16 *
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 8 *
+dropout = 0.2
+class_weight = True
+
+# RESULT: early stop: 19/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9838
+--- Macro F1-score: 0.5827
+--- Overall Accuracy: 0.9838
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 119, FP: 150, TN: 358045, FN: 226
+-- Precision: 0.4424 (119 / 269)
+-- Recall: 0.3449 (119 / 345)
+-- Specificity: 0.9996 (358045 / 358195)
+-- Accuracy: 0.9990
+-- F1-score: 0.3876
+-- Balanced Accuracy: 67.2254
+
+[Backdoor]
+-- TP: 293, FP: 1581, TN: 356634, FN: 32
+-- Precision: 0.1564 (293 / 1874)
+-- Recall: 0.9015 (293 / 325)
+-- Specificity: 0.9956 (356634 / 358215)
+-- Accuracy: 0.9955
+-- F1-score: 0.2665
+-- Balanced Accuracy: 94.8562
+
+[Benign]
+-- TP: 342359, FP: 21, TN: 14237, FN: 1923
+-- Precision: 0.9999 (342359 / 342380)
+-- Recall: 0.9944 (342359 / 344282)
+-- Specificity: 0.9985 (14237 / 14258)
+-- Accuracy: 0.9946
+-- F1-score: 0.9972
+-- Balanced Accuracy: 99.6471
+
+[DoS]
+-- TP: 246, FP: 1295, TN: 356376, FN: 623
+-- Precision: 0.1596 (246 / 1541)
+-- Recall: 0.2831 (246 / 869)
+-- Specificity: 0.9964 (356376 / 357671)
+-- Accuracy: 0.9947
+-- F1-score: 0.2041
+-- Balanced Accuracy: 63.9732
+
+[Exploits]
+-- TP: 3020, FP: 540, TN: 353267, FN: 1713
+-- Precision: 0.8483 (3020 / 3560)
+-- Recall: 0.6381 (3020 / 4733)
+-- Specificity: 0.9985 (353267 / 353807)
+-- Accuracy: 0.9937
+-- F1-score: 0.7283
+-- Balanced Accuracy: 81.8273
+
+[Fuzzers]
+-- TP: 3052, FP: 1136, TN: 354057, FN: 295
+-- Precision: 0.7287 (3052 / 4188)
+-- Recall: 0.9119 (3052 / 3347)
+-- Specificity: 0.9968 (354057 / 355193)
+-- Accuracy: 0.9960
+-- F1-score: 0.8101
+-- Balanced Accuracy: 95.4332
+
+[Generic]
+-- TP: 1902, FP: 125, TN: 355931, FN: 582
+-- Precision: 0.9383 (1902 / 2027)
+-- Recall: 0.7657 (1902 / 2484)
+-- Specificity: 0.9996 (355931 / 356056)
+-- Accuracy: 0.9980
+-- F1-score: 0.8433
+-- Balanced Accuracy: 88.2675
+
+[Reconnaissance]
+-- TP: 1517, FP: 182, TN: 356441, FN: 400
+-- Precision: 0.8929 (1517 / 1699)
+-- Recall: 0.7913 (1517 / 1917)
+-- Specificity: 0.9995 (356441 / 356623)
+-- Accuracy: 0.9984
+-- F1-score: 0.8390
+-- Balanced Accuracy: 89.5415
+
+[Shellcode]
+-- TP: 209, FP: 185, TN: 358141, FN: 5
+-- Precision: 0.5305 (209 / 394)
+-- Recall: 0.9766 (209 / 214)
+-- Specificity: 0.9995 (358141 / 358326)
+-- Accuracy: 0.9995
+-- F1-score: 0.6875
+-- Balanced Accuracy: 98.8060
+
+[Worms]
+-- TP: 20, FP: 588, TN: 357928, FN: 4
+-- Precision: 0.0329 (20 / 608)
+-- Recall: 0.8333 (20 / 24)
+-- Specificity: 0.9984 (357928 / 358516)
+-- Accuracy: 0.9983
+-- F1-score: 0.0633
+-- Balanced Accuracy: 91.584
+
+
+=== TRIAL 9 ===
+# CONFIGURATION
+window_size = 32 *
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 8 *
+dropout = 0.2
+class_weight = TRUE
+
+# RESULT: early stop: #/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9844
+--- Macro F1-score: 0.5900
+--- Overall Accuracy: 0.9844
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 237, FP: 1420, TN: 356773, FN: 108
+-- Precision: 0.1430 (237 / 1657)
+-- Recall: 0.6870 (237 / 345)
+-- Specificity: 0.9960 (356773 / 358193)
+-- Accuracy: 0.9957
+-- F1-score: 0.2368
+-- Balanced Accuracy: 84.1496
+
+[Backdoor]
+-- TP: 158, FP: 976, TN: 357237, FN: 167
+-- Precision: 0.1393 (158 / 1134)
+-- Recall: 0.4862 (158 / 325)
+-- Specificity: 0.9973 (357237 / 358213)
+-- Accuracy: 0.9968
+-- F1-score: 0.2166
+-- Balanced Accuracy: 74.1715
+
+[Benign]
+-- TP: 342353, FP: 20, TN: 14238, FN: 1927
+-- Precision: 0.9999 (342353 / 342373)
+-- Recall: 0.9944 (342353 / 344280)
+-- Specificity: 0.9986 (14238 / 14258)
+-- Accuracy: 0.9946
+-- F1-score: 0.9972
+-- Balanced Accuracy: 99.6500
+
+[DoS]
+-- TP: 248, FP: 862, TN: 356807, FN: 621
+-- Precision: 0.2234 (248 / 1110)
+-- Recall: 0.2854 (248 / 869)
+-- Specificity: 0.9976 (356807 / 357669)
+-- Accuracy: 0.9959
+-- F1-score: 0.2506
+-- Balanced Accuracy: 64.1488
+
+[Exploits]
+-- TP: 3214, FP: 577, TN: 353228, FN: 1519
+-- Precision: 0.8478 (3214 / 3791)
+-- Recall: 0.6791 (3214 / 4733)
+-- Specificity: 0.9984 (353228 / 353805)
+-- Accuracy: 0.9942
+-- F1-score: 0.7541
+-- Balanced Accuracy: 83.8716
+
+[Fuzzers]
+-- TP: 2964, FP: 973, TN: 354218, FN: 383
+-- Precision: 0.7529 (2964 / 3937)
+-- Recall: 0.8856 (2964 / 3347)
+-- Specificity: 0.9973 (354218 / 355191)
+-- Accuracy: 0.9962
+-- F1-score: 0.8138
+-- Balanced Accuracy: 94.1415
+
+[Generic]
+-- TP: 1974, FP: 224, TN: 355830, FN: 510
+-- Precision: 0.8981 (1974 / 2198)
+-- Recall: 0.7947 (1974 / 2484)
+-- Specificity: 0.9994 (355830 / 356054)
+-- Accuracy: 0.9980
+-- F1-score: 0.8432
+-- Balanced Accuracy: 89.7028
+
+[Reconnaissance]
+-- TP: 1566, FP: 276, TN: 356345, FN: 351
+-- Precision: 0.8502 (1566 / 1842)
+-- Recall: 0.8169 (1566 / 1917)
+-- Specificity: 0.9992 (356345 / 356621)
+-- Accuracy: 0.9983
+-- F1-score: 0.8332
+-- Balanced Accuracy: 90.8064
+
+[Shellcode]
+-- TP: 213, FP: 140, TN: 358184, FN: 1
+-- Precision: 0.6034 (213 / 353)
+-- Recall: 0.9953 (213 / 214)
+-- Specificity: 0.9996 (358184 / 358324)
+-- Accuracy: 0.9996
+-- F1-score: 0.7513
+-- Balanced Accuracy: 99.7468
+
+[Worms]
+-- TP: 17, FP: 126, TN: 358388, FN: 7
+-- Precision: 0.1189 (17 / 143)
+-- Recall: 0.7083 (17 / 24)
+-- Specificity: 0.9996 (358388 / 358514)
+-- Accuracy: 0.9996
+-- F1-score: 0.2036
+-- Balanced Accuracy: 85.3991
+
+
+=== TRIAL 10 ===
+# CONFIGURATION
+window_size = 32 *
+batch_size = 256
+epochs = 300
+n_layers = 2
+embed_size = 64
+internal_size = 128
+n_heads = 16 *
+dropout = 0.2
+class_weight = TRUE
+
+# RESULT: early stop: 59/300
+=== Overall Metrics ===
+--- Micro F1-score: 0.9848
+--- Macro F1-score: 0.6029
+--- Overall Accuracy: 0.9848
+
+=== Label Metrics ===
+[Analysis]
+-- TP: 230, FP: 1280, TN: 356913, FN: 115
+-- Precision: 0.1523 (230 / 1510)
+-- Recall: 0.6667 (230 / 345)
+-- Specificity: 0.9964 (356913 / 358193)
+-- Accuracy: 0.9961
+-- F1-score: 0.2480
+-- Balanced Accuracy: 83.1547
+
+[Backdoor]
+-- TP: 177, FP: 961, TN: 357252, FN: 148
+-- Precision: 0.1555 (177 / 1138)
+-- Recall: 0.5446 (177 / 325)
+-- Specificity: 0.9973 (357252 / 358213)
+-- Accuracy: 0.9969
+-- F1-score: 0.2420
+-- Balanced Accuracy: 77.0966
+
+[Benign]
+-- TP: 342390, FP: 17, TN: 14241, FN: 1890
+-- Precision: 1.0000 (342390 / 342407)
+-- Recall: 0.9945 (342390 / 344280)
+-- Specificity: 0.9988 (14241 / 14258)
+-- Accuracy: 0.9947
+-- F1-score: 0.9972
+-- Balanced Accuracy: 99.6659
+
+
+[DoS]
+-- TP: 240, FP: 945, TN: 356724, FN: 629
+-- Precision: 0.2025 (240 / 1185)
+-- Recall: 0.2762 (240 / 869)
+-- Specificity: 0.9974 (356724 / 357669)
+-- Accuracy: 0.9956
+-- F1-score: 0.2337
+-- Balanced Accuracy: 63.6769
+
+[Exploits]
+-- TP: 3261, FP: 545, TN: 353260, FN: 1472
+-- Precision: 0.8568 (3261 / 3806)
+-- Recall: 0.6890 (3261 / 4733)
+-- Specificity: 0.9985 (353260 / 353805)
+-- Accuracy: 0.9944
+-- F1-score: 0.7638
+-- Balanced Accuracy: 84.3726
+
+[Fuzzers]
+-- TP: 2990, FP: 969, TN: 354222, FN: 357
+-- Precision: 0.7552 (2990 / 3959)
+-- Recall: 0.8933 (2990 / 3347)
+-- Specificity: 0.9973 (354222 / 355191)
+-- Accuracy: 0.9963
+-- F1-score: 0.8185
+-- Balanced Accuracy: 94.5305
+
+[Generic]
+-- TP: 1997, FP: 242, TN: 355812, FN: 487
+-- Precision: 0.8919 (1997 / 2239)
+-- Recall: 0.8039 (1997 / 2484)
+-- Specificity: 0.9993 (355812 / 356054)
+-- Accuracy: 0.9980
+-- F1-score: 0.8456
+-- Balanced Accuracy: 90.1633
+
+[Reconnaissance]
+-- TP: 1581, FP: 273, TN: 356348, FN: 336
+-- Precision: 0.8528 (1581 / 1854)
+-- Recall: 0.8247 (1581 / 1917)
+-- Specificity: 0.9992 (356348 / 356621)
+-- Accuracy: 0.9983
+-- F1-score: 0.8385
+-- Balanced Accuracy: 91.1980
+
+[Shellcode]
+-- TP: 210, FP: 121, TN: 358203, FN: 4
+-- Precision: 0.6344 (210 / 331)
+-- Recall: 0.9813 (210 / 214)
+-- Specificity: 0.9997 (358203 / 358324)
+-- Accuracy: 0.9997
+-- F1-score: 0.7706
+-- Balanced Accuracy: 99.0485
+
+[Worms]
+-- TP: 18, FP: 91, TN: 358423, FN: 6
+-- Precision: 0.1651 (18 / 109)
+-- Recall: 0.7500 (18 / 24)
+-- Specificity: 0.9997 (358423 / 358514)
+-- Accuracy: 0.9997
+-- F1-score: 0.2707
+-- Balanced Accuracy: 87.4873
+
+
+=== TRIAL 11 ===
+# CONFIGURATION
+window_size = 8
+batch_size = 256
+epochs = 300
+n_layers = 4 *
+embed_size = 64
+internal_size = 128
+n_heads = 2
+dropout = 0.2
+class_weight = TRUE
+
+# RESULT: early stop: #/300
+
