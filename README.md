@@ -31,19 +31,21 @@
 	</p>
 </div>
 
+## About
+This project develops Transformer-based NetFlow Anomaly Detection. Using the Encoder-Decoder Transformer Model and the BERT model, we observed that contextual understanding in NetFlow could be used to predict attacks that are difficult to predict using existing baseline models. The baseline model used a simple FCN model.
+
 ## Progress
-- [ ] Gathering Data
-- [ ] Cleaning Data(Preprocessing)
-- [ ] Build Model
-- [ ] Training and Fine Tuning
+- [x] Gathering Data
+- [x] Cleaning Data(Preprocessing)
+- [x] Build Model
+- [x] Training and Fine Tuning
 - [ ] Evaluation
 
 ## Task List
-- [ ] example
 
 ## Report and Presentation Duedate
-- [ ] Project Proposal (Oct 1, 2025)
-- [ ] Project Midterm Report (Oct 15, 2025)
+- [x] Project Proposal (Oct 1, 2025)
+- [x] Project Midterm Report (Oct 15, 2025)
 - [ ] Project Presentation (Dec 1, 2025)
 - [ ] Project Report (Dec 10, 2025)
 
