@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """main.py
 Description
-Flow based Network Anomaly Detection with Transformer based model
+Flow based Network Anomaly Detection with CNN-LSTM based model
 
 Date
-Nov 10, 2025
+Nov 26, 2025
 """
 
 __author__ = "Jeong Hoon Choi"
@@ -35,7 +35,7 @@ from sklearn.utils.class_weight import compute_class_weight
 
 from customize.NetFlowUtility import NetFlowLabelEncoder, NetFlowSlicing, NetFlowBatchLoader
 from customize.NetFlowMetrics import PrecisionMetric, RecallMetric, F1Macro, print_result
-from customize.NetFlowBertClassifier import NetFlowBertClassifier
+from customize.NetFlowCNNLSTM import NetFlowCNNLSTM
 
 # dup2 #
 #fp = open(f"tmp/{datetime.now().strftime('%Y%m%d%H%M%S')}")
@@ -50,10 +50,9 @@ def main(
         window_size:int=8,
         batch_size:int=64,
         epochs:int=300,
-        embed_size:int=64,
-        n_layers:int=2,
-        internal_size:int=128,
-        n_heads:int=2,
+        cnn_filters:list=[64, 128],
+        kernel_size:int=3,
+        lstm_units:list=[128, 64],
         dropout:float=0.1,
         class_weight:bool=False,
         fout:str=None,
@@ -97,15 +96,14 @@ def main(
     val_ds = NetFlowBatchLoader(X, y, np.where(val_mask)[0], batch_size)
     test_ds = NetFlowBatchLoader(X, y, np.where(test_mask)[0], batch_size)
     
-    model = NetFlowBertClassifier(
-        embed_size=embed_size,
-        n_layers=n_layers,
-        internal_size=internal_size,
-        n_heads=n_heads,
-        dropout=dropout,
-        num_classes=le.size
+    model = NetFlowCNNLSTM(
+            num_classes=le.size,
+            cnn_filters=cnn_filters,
+            kernel_size=kernel_size,
+            lstm_units=lstm_units,
+            dropout_rate=dropout
     )
-    
+
     metrics = ["accuracy", F1Macro(), PrecisionMetric(), RecallMetric()] # ["accuracy"]
     
     model.compile(
@@ -115,14 +113,14 @@ def main(
     )
     
     # model.build(input_shape=train_ds.element_spec[0].shape)
-
+    
     monitor = "val_loss"
     mode = "auto"
-
+    
     if not class_weight:
         monitor = "val_f1_macro"
         mode = "max"
-    
+        
     early_stop = tf.keras.callbacks.EarlyStopping(
         monitor=monitor,
         mode=mode,
@@ -138,7 +136,7 @@ def main(
         min_lr=1e-6,
         verbose=1
     )
-
+    
     class_weights = None
     
     if class_weight:
@@ -179,14 +177,14 @@ if __name__ == "__main__":
         window_size=8,
         batch_size=256,
         epochs=300,
-        embed_size=32,
-        n_layers=2,
-        internal_size=128,
-        n_heads=2,
-        dropout=0.1,
+        cnn_filters=[64, 128],
+        kernel_size=3,
+        lstm_units=[128, 64],
+        dropout=0.3,
         class_weight=True,
         fout="tmp/metrics.txt",
         random_state=4444))
 
 #fp.close()
 #os.close(orig)
+

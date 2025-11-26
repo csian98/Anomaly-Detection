@@ -170,7 +170,7 @@ def main(
 if __name__ == "__main__":
     #sys.exit(main(sys.argv[1:]))
     sys.exit(main(
-        data_path="data/nf-pre/NF-UNSW-NB15-v2-pre.csv",
+        data_path="data/nf-pre/NF-CSE-CIC-IDS2018-pre.csv",
         epochs=300,
         hidden_sizes=(128, 64),
         dropout=0.3,
@@ -181,3 +181,4 @@ if __name__ == "__main__":
     
 #fp.close()
 #os.close(orig)
+

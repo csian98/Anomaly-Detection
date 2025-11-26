@@ -1,0 +1,463 @@
+>>> Baseline FCN
+=== Model Training Configuration ===
+data_path      : data/nf-pre/NF-CSE-CIC-IDS2018-pre.csv
+batch_size     : 64
+epochs         : 300
+hidden_sizes   : (128, 64)
+dropout        : 0.3
+class_weight   : True
+fout           : tmp/metrics.txt
+random_state   : 4444
+
+=== Overall Metrics ===
+--- Micro F1-score: 0.5424
+--- Macro F1-score: 0.5954
+--- Overall Accuracy: 0.5424
+
+=== Label Metrics ===
+[Benign]
+-- TP: 213174, FP: 415, TN: 53393, FN: 183018
+-- Precision: 0.9981 (213174 / 213589)
+-- Recall: 0.5381 (213174 / 396192)
+-- Specificity: 0.9923 (53393 / 53808)
+-- Accuracy: 0.5924
+-- F1-score: 0.6992
+-- Balanced Accuracy: 76.5172
+
+[Bot]
+-- TP: 3404, FP: 0, TN: 446596, FN: 0
+-- Precision: 1.0000 (3404 / 3404)
+-- Recall: 1.0000 (3404 / 3404)
+-- Specificity: 1.0000 (446596 / 446596)
+-- Accuracy: 1.0000
+-- F1-score: 1.0000
+-- Balanced Accuracy: 100.0000
+
+[Brute Force -Web]
+-- TP: 13, FP: 3459, TN: 446485, FN: 43
+-- Precision: 0.0037 (13 / 3472)
+-- Recall: 0.2321 (13 / 56)
+-- Specificity: 0.9923 (446485 / 449944)
+-- Accuracy: 0.9922
+-- F1-score: 0.0074
+-- Balanced Accuracy: 61.2228
+
+[Brute Force -XSS]
+-- TP: 15, FP: 19971, TN: 430007, FN: 7
+-- Precision: 0.0008 (15 / 19986)
+-- Recall: 0.6818 (15 / 22)
+-- Specificity: 0.9556 (430007 / 449978)
+-- Accuracy: 0.9556
+-- F1-score: 0.0015
+-- Balanced Accuracy: 81.8718
+
+[DDOS attack-HOIC]
+-- TP: 3472, FP: 15, TN: 424255, FN: 22258
+-- Precision: 0.9957 (3472 / 3487)
+-- Recall: 0.1349 (3472 / 25730)
+-- Specificity: 1.0000 (424255 / 424270)
+-- Accuracy: 0.9505
+-- F1-score: 0.2377
+-- Balanced Accuracy: 56.7452
+
+[DDOS attack-LOIC-UDP]
+-- TP: 49, FP: 83, TN: 449867, FN: 1
+-- Precision: 0.3712 (49 / 132)
+-- Recall: 0.9800 (49 / 50)
+-- Specificity: 0.9998 (449867 / 449950)
+-- Accuracy: 0.9998
+-- F1-score: 0.5385
+-- Balanced Accuracy: 98.9908
+
+[DDoS attacks-LOIC-HTTP]
+-- TP: 7248, FP: 16, TN: 442653, FN: 83
+-- Precision: 0.9978 (7248 / 7264)
+-- Recall: 0.9887 (7248 / 7331)
+-- Specificity: 1.0000 (442653 / 442669)
+-- Accuracy: 0.9998
+-- F1-score: 0.9932
+-- Balanced Accuracy: 99.4321
+
+[DoS attacks-GoldenEye]
+-- TP: 667, FP: 114, TN: 449218, FN: 1
+-- Precision: 0.8540 (667 / 781)
+-- Recall: 0.9985 (667 / 668)
+-- Specificity: 0.9997 (449218 / 449332)
+-- Accuracy: 0.9997
+-- F1-score: 0.9206
+-- Balanced Accuracy: 99.9125
+
+[DoS attacks-Hulk]
+-- TP: 10251, FP: 1120, TN: 438561, FN: 68
+-- Precision: 0.9015 (10251 / 11371)
+-- Recall: 0.9934 (10251 / 10319)
+-- Specificity: 0.9975 (438561 / 439681)
+-- Accuracy: 0.9974
+-- F1-score: 0.9452
+-- Balanced Accuracy: 99.5431
+
+[DoS attacks-SlowHTTPTest]
+-- TP: 333, FP: 0, TN: 449667, FN: 0
+-- Precision: 1.0000 (333 / 333)
+-- Recall: 1.0000 (333 / 333)
+-- Specificity: 1.0000 (449667 / 449667)
+-- Accuracy: 1.0000
+-- F1-score: 1.0000
+-- Balanced Accuracy: 100.0000
+
+[DoS attacks-Slowloris]
+-- TP: 230, FP: 342, TN: 449427, FN: 1
+-- Precision: 0.4021 (230 / 572)
+-- Recall: 0.9957 (230 / 231)
+-- Specificity: 0.9992 (449427 / 449769)
+-- Accuracy: 0.9992
+-- F1-score: 0.5729
+-- Balanced Accuracy: 99.7455
+
+[FTP-BruteForce]
+-- TP: 616, FP: 1, TN: 449383, FN: 0
+-- Precision: 0.9984 (616 / 617)
+-- Recall: 1.0000 (616 / 616)
+-- Specificity: 1.0000 (449383 / 449384)
+-- Accuracy: 1.0000
+-- F1-score: 0.9992
+-- Balanced Accuracy: 99.9999
+
+[Infilteration]
+-- TP: 2367, FP: 180327, TN: 266891, FN: 415
+-- Precision: 0.0130 (2367 / 182694)
+-- Recall: 0.8508 (2367 / 2782)
+-- Specificity: 0.5968 (266891 / 447218)
+-- Accuracy: 0.5984
+-- F1-score: 0.0255
+-- Balanced Accuracy: 72.3804
+
+[SQL Injection]
+-- TP: 0, FP: 0, TN: 449988, FN: 12
+-- Precision: 0.0000 (0 / 0)
+-- Recall: 0.0000 (0 / 12)
+-- Specificity: 1.0000 (449988 / 449988)
+-- Accuracy: 1.0000
+-- F1-score: 0.0000
+-- Balanced Accuracy: 50.0000
+
+[SSH-Bruteforce]
+-- TP: 2254, FP: 44, TN: 447702, FN: 0
+-- Precision: 0.9809 (2254 / 2298)
+-- Recall: 1.0000 (2254 / 2254)
+-- Specificity: 0.9999 (447702 / 447746)
+-- Accuracy: 0.9999
+-- F1-score: 0.9903
+-- Balanced Accuracy: 99.9951
+
+>>> CNN-LSTM
+=== Model Training Configuration ===
+data_path      : data/nf-pre/NF-CSE-CIC-IDS2018-pre.csv
+window_size    : 8
+batch_size     : 256
+epochs         : 300
+cnn_filters    : [64, 128]
+kernel_size    : 3
+lstm_units     : [128, 64]
+dropout        : 0.3
+class_weight   : True
+fout           : tmp/metrics.txt
+random_state   : 4444
+
+=== Overall Metrics ===
+--- Micro F1-score: 0.6445
+--- Macro F1-score: 0.5770
+--- Overall Accuracy: 0.6445
+
+=== Label Metrics ===
+[Benign]
+-- TP: 257054, FP: 871, TN: 52937, FN: 139136
+-- Precision: 0.9966 (257054 / 257925)
+-- Recall: 0.6488 (257054 / 396190)
+-- Specificity: 0.9838 (52937 / 53808)
+-- Accuracy: 0.6889
+-- F1-score: 0.7860
+-- Balanced Accuracy: 81.6314
+
+[Bot]
+-- TP: 3404, FP: 6, TN: 446588, FN: 0
+-- Precision: 0.9982 (3404 / 3410)
+-- Recall: 1.0000 (3404 / 3404)
+-- Specificity: 1.0000 (446588 / 446594)
+-- Accuracy: 1.0000
+-- F1-score: 0.9991
+-- Balanced Accuracy: 99.9993
+
+[Brute Force -Web]
+-- TP: 27, FP: 11100, TN: 438842, FN: 29
+-- Precision: 0.0024 (27 / 11127)
+-- Recall: 0.4821 (27 / 56)
+-- Specificity: 0.9753 (438842 / 449942)
+-- Accuracy: 0.9753
+-- F1-score: 0.0048
+-- Balanced Accuracy: 72.8737
+
+[Brute Force -XSS]
+-- TP: 8, FP: 3576, TN: 446400, FN: 14
+-- Precision: 0.0022 (8 / 3584)
+-- Recall: 0.3636 (8 / 22)
+-- Specificity: 0.9921 (446400 / 449976)
+-- Accuracy: 0.9920
+-- F1-score: 0.0044
+-- Balanced Accuracy: 67.7845
+
+[DDOS attack-HOIC]
+-- TP: 6121, FP: 62, TN: 424206, FN: 19609
+-- Precision: 0.9900 (6121 / 6183)
+-- Recall: 0.2379 (6121 / 25730)
+-- Specificity: 0.9999 (424206 / 424268)
+-- Accuracy: 0.9563
+-- F1-score: 0.3836
+-- Balanced Accuracy: 61.8874
+
+[DDOS attack-LOIC-UDP]
+-- TP: 49, FP: 201, TN: 449747, FN: 1
+-- Precision: 0.1960 (49 / 250)
+-- Recall: 0.9800 (49 / 50)
+-- Specificity: 0.9996 (449747 / 449948)
+-- Accuracy: 0.9996
+-- F1-score: 0.3267
+-- Balanced Accuracy: 98.9777
+
+[DDoS attacks-LOIC-HTTP]
+-- TP: 7130, FP: 72, TN: 442595, FN: 201
+-- Precision: 0.9900 (7130 / 7202)
+-- Recall: 0.9726 (7130 / 7331)
+-- Specificity: 0.9998 (442595 / 442667)
+-- Accuracy: 0.9994
+-- F1-score: 0.9812
+-- Balanced Accuracy: 98.6210
+
+[DoS attacks-GoldenEye]
+-- TP: 667, FP: 180, TN: 449150, FN: 1
+-- Precision: 0.7875 (667 / 847)
+-- Recall: 0.9985 (667 / 668)
+-- Specificity: 0.9996 (449150 / 449330)
+-- Accuracy: 0.9996
+-- F1-score: 0.8805
+-- Balanced Accuracy: 99.9051
+
+[DoS attacks-Hulk]
+-- TP: 10241, FP: 3664, TN: 436015, FN: 78
+-- Precision: 0.7365 (10241 / 13905)
+-- Recall: 0.9924 (10241 / 10319)
+-- Specificity: 0.9917 (436015 / 439679)
+-- Accuracy: 0.9917
+-- F1-score: 0.8455
+-- Balanced Accuracy: 99.2054
+
+[DoS attacks-SlowHTTPTest]
+-- TP: 333, FP: 12, TN: 449653, FN: 0
+-- Precision: 0.9652 (333 / 345)
+-- Recall: 1.0000 (333 / 333)
+-- Specificity: 1.0000 (449653 / 449665)
+-- Accuracy: 1.0000
+-- F1-score: 0.9823
+-- Balanced Accuracy: 99.9987
+
+[DoS attacks-Slowloris]
+-- TP: 230, FP: 564, TN: 449203, FN: 1
+-- Precision: 0.2897 (230 / 794)
+-- Recall: 0.9957 (230 / 231)
+-- Specificity: 0.9987 (449203 / 449767)
+-- Accuracy: 0.9987
+-- F1-score: 0.4488
+-- Balanced Accuracy: 99.7209
+
+
+[FTP-BruteForce]
+-- TP: 616, FP: 7, TN: 449375, FN: 0
+-- Precision: 0.9888 (616 / 623)
+-- Recall: 1.0000 (616 / 616)
+-- Specificity: 1.0000 (449375 / 449382)
+-- Accuracy: 1.0000
+-- F1-score: 0.9944
+-- Balanced Accuracy: 99.9992
+
+[Infilteration]
+-- TP: 1897, FP: 132715, TN: 314501, FN: 885
+-- Precision: 0.0141 (1897 / 134612)
+-- Recall: 0.6819 (1897 / 2782)
+-- Specificity: 0.7032 (314501 / 447216)
+-- Accuracy: 0.7031
+-- F1-score: 0.0276
+-- Balanced Accuracy: 69.2563
+
+[SQL Injection]
+-- TP: 3, FP: 6884, TN: 443102, FN: 9
+-- Precision: 0.0004 (3 / 6887)
+-- Recall: 0.2500 (3 / 12)
+-- Specificity: 0.9847 (443102 / 449986)
+-- Accuracy: 0.9847
+-- F1-score: 0.0009
+-- Balanced Accuracy: 61.7351
+
+[SSH-Bruteforce]
+-- TP: 2254, FP: 50, TN: 447694, FN: 0
+-- Precision: 0.9783 (2254 / 2304)
+-- Recall: 1.0000 (2254 / 2254)
+-- Specificity: 0.9999 (447694 / 447744)
+-- Accuracy: 0.9999
+-- F1-score: 0.9890
+-- Balanced Accuracy: 99.9944
+
+>>> NetFlowBERT
+=== Model Training Configuration ===
+data_path      : data/nf-pre/NF-CSE-CIC-IDS2018-pre.csv
+window_size    : 8
+batch_size     : 256
+epochs         : 300
+embed_size     : 64
+n_layers       : 4
+internal_size  : 256
+n_heads        : 2
+dropout        : 0.1
+class_weight   : True
+fout           : tmp/metrics.txt
+random_state   : 4444
+
+=== Overall Metrics ===
+--- Micro F1-score: 0.8344
+--- Macro F1-score: 0.6389
+--- Overall Accuracy: 0.8344
+
+=== Label Metrics ===
+[Benign]
+-- TP: 346633, FP: 1606, TN: 52202, FN: 49557
+-- Precision: 0.9954 (346633 / 348239)
+-- Recall: 0.8749 (346633 / 396190)
+-- Specificity: 0.9702 (52202 / 53808)
+-- Accuracy: 0.8863
+-- F1-score: 0.9313
+-- Balanced Accuracy: 92.2535
+
+[Bot]
+-- TP: 3404, FP: 5, TN: 446589, FN: 0
+-- Precision: 0.9985 (3404 / 3409)
+-- Recall: 1.0000 (3404 / 3404)
+-- Specificity: 1.0000 (446589 / 446594)
+-- Accuracy: 1.0000
+-- F1-score: 0.9993
+-- Balanced Accuracy: 99.9994
+
+[Brute Force -Web]
+-- TP: 1, FP: 224, TN: 449718, FN: 55
+-- Precision: 0.0044 (1 / 225)
+-- Recall: 0.0179 (1 / 56)
+-- Specificity: 0.9995 (449718 / 449942)
+-- Accuracy: 0.9994
+-- F1-score: 0.0071
+-- Balanced Accuracy: 50.8680
+
+[Brute Force -XSS]
+-- TP: 3, FP: 54, TN: 449922, FN: 19
+-- Precision: 0.0526 (3 / 57)
+-- Recall: 0.1364 (3 / 22)
+-- Specificity: 0.9999 (449922 / 449976)
+-- Accuracy: 0.9998
+-- F1-score: 0.0759
+-- Balanced Accuracy: 56.8122
+
+[DDOS attack-HOIC]
+-- TP: 2519, FP: 7, TN: 424261, FN: 23211
+-- Precision: 0.9972 (2519 / 2526)
+-- Recall: 0.0979 (2519 / 25730)
+-- Specificity: 1.0000 (424261 / 424268)
+-- Accuracy: 0.9484
+-- F1-score: 0.1783
+-- Balanced Accuracy: 54.8942
+
+[DDOS attack-LOIC-UDP]
+-- TP: 49, FP: 1, TN: 449947, FN: 1
+-- Precision: 0.9800 (49 / 50)
+-- Recall: 0.9800 (49 / 50)
+-- Specificity: 1.0000 (449947 / 449948)
+-- Accuracy: 1.0000
+-- F1-score: 0.9800
+-- Balanced Accuracy: 98.9999
+
+[DDoS attacks-LOIC-HTTP]
+-- TP: 7330, FP: 68, TN: 442599, FN: 1
+-- Precision: 0.9908 (7330 / 7398)
+-- Recall: 0.9999 (7330 / 7331)
+-- Specificity: 0.9998 (442599 / 442667)
+-- Accuracy: 0.9998
+-- F1-score: 0.9953
+-- Balanced Accuracy: 99.9855
+
+[DoS attacks-GoldenEye]
+-- TP: 667, FP: 166, TN: 449164, FN: 1
+-- Precision: 0.8007 (667 / 833)
+-- Recall: 0.9985 (667 / 668)
+-- Specificity: 0.9996 (449164 / 449330)
+-- Accuracy: 0.9996
+-- F1-score: 0.8887
+-- Balanced Accuracy: 99.9067
+
+[DoS attacks-Hulk]
+-- TP: 10249, FP: 1035, TN: 438644, FN: 70
+-- Precision: 0.9083 (10249 / 11284)
+-- Recall: 0.9932 (10249 / 10319)
+-- Specificity: 0.9976 (438644 / 439679)
+-- Accuracy: 0.9975
+-- F1-score: 0.9488
+-- Balanced Accuracy: 99.5431
+
+[DoS attacks-SlowHTTPTest]
+-- TP: 333, FP: 0, TN: 449665, FN: 0
+-- Precision: 1.0000 (333 / 333)
+-- Recall: 1.0000 (333 / 333)
+-- Specificity: 1.0000 (449665 / 449665)
+-- Accuracy: 1.0000
+-- F1-score: 1.0000
+-- Balanced Accuracy: 100.0000
+
+[DoS attacks-Slowloris]
+-- TP: 231, FP: 390, TN: 449377, FN: 0
+-- Precision: 0.3720 (231 / 621)
+-- Recall: 1.0000 (231 / 231)
+-- Specificity: 0.9991 (449377 / 449767)
+-- Accuracy: 0.9991
+-- F1-score: 0.5423
+-- Balanced Accuracy: 99.9566
+
+[FTP-BruteForce]
+-- TP: 616, FP: 1, TN: 449381, FN: 0
+-- Precision: 0.9984 (616 / 617)
+-- Recall: 1.0000 (616 / 616)
+-- Specificity: 1.0000 (449381 / 449382)
+-- Accuracy: 1.0000
+-- F1-score: 0.9992
+-- Balanced Accuracy: 99.9999
+
+[Infilteration]
+-- TP: 1175, FP: 46636, TN: 400580, FN: 1607
+-- Precision: 0.0246 (1175 / 47811)
+-- Recall: 0.4224 (1175 / 2782)
+-- Specificity: 0.8957 (400580 / 447216)
+-- Accuracy: 0.8928
+-- F1-score: 0.0464
+-- Balanced Accuracy: 65.9039
+
+[SQL Injection]
+-- TP: 12, FP: 24288, TN: 425698, FN: 0
+-- Precision: 0.0005 (12 / 24300)
+-- Recall: 1.0000 (12 / 12)
+-- Specificity: 0.9460 (425698 / 449986)
+-- Accuracy: 0.9460
+-- F1-score: 0.0010
+-- Balanced Accuracy: 97.3012
+
+[SSH-Bruteforce]
+-- TP: 2253, FP: 42, TN: 447702, FN: 1
+-- Precision: 0.9817 (2253 / 2295)
+-- Recall: 0.9996 (2253 / 2254)
+-- Specificity: 0.9999 (447702 / 447744)
+-- Accuracy: 0.9999
+-- F1-score: 0.9905
+-- Balanced Accuracy: 99.9731

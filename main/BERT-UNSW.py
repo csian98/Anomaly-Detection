@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""GridSearch.py
+"""main.py
 Description
 Flow based Network Anomaly Detection with Transformer based model
 
 Date
-Nov 14, 2025
+Nov 10, 2025
 """
 
 __author__ = "Jeong Hoon Choi"
@@ -12,14 +12,12 @@ __version__ = "1.0.0"
 
 
 # Import #
-import os, sys, gc
+import os, sys
 sys.path.append("pylib/")
 import warnings
 warnings.filterwarnings("ignore")
 import logging
 from IPython.display import display
-
-import argparse
 
 from typing import Tuple, List
 import time
@@ -176,47 +174,20 @@ def main(
 # EP
 if __name__ == "__main__":
     #sys.exit(main(sys.argv[1:]))
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("--data_path", type=str, default="data/nf-pre/NF-UNSW-NB15-v2-pre.csv")
-    parser.add_argument("--window_size", type=int, required=True)
-    parser.add_argument("--batch_size", type=int, default=256)
-    parser.add_argument("--epochs", type=int, default=300)
-    parser.add_argument("--embed_size", type=int, default=64)
-    parser.add_argument("--n_layers", type=int, required=True)
-    parser.add_argument("--internal_size", type=int, required=True)
-    parser.add_argument("--n_heads", type=int, required=True)
-    parser.add_argument("--dropout", type=float, default=0.1)
-    parser.add_argument("--class_weight", type=str, required=True)
-    parser.add_argument("--random_state", type=int, default=4444)
-    parser.add_argument("--fout", type=str, default="tmp/grid_search.txt")
-
-    args = parser.parse_args()
-
-    if args.class_weight.lower() in ("true", "1", "yes"):
-        args.class_weight = True
-    else:
-        args.class_weight = False
-
-    main(
-        data_path=args.data_path,
-        window_size=args.window_size,
-        batch_size=args.batch_size,
-        epochs=args.epochs,
-        embed_size=args.embed_size,
-        n_layers=args.n_layers,
-        internal_size=args.internal_size,
-        n_heads=args.n_heads,
-        dropout=args.dropout,
-        class_weight=args.class_weight,
-        fout=args.fout,
-        random_state=args.random_state)
-    
-    tf.keras.backend.clear_session()
-    gc.collect()
-    
-    sys.exit()
+    sys.exit(main(
+        data_path="data/nf-pre/NF-UNSW-NB15-v2-pre.csv",
+        window_size=16,#
+        batch_size=256,
+        epochs=300,
+        embed_size=64,
+        n_layers=4,
+        internal_size=512,
+        n_heads=8,#
+        dropout=0.1,
+        class_weight=True,
+        fout="tmp/metrics.txt",
+        random_state=4444))
 
 #fp.close()
 #os.close(orig)
+
