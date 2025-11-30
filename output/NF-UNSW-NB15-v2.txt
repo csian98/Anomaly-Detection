@@ -1,99 +1,109 @@
 >>> Baseline FCN
+=== Model Training Configuration ===
+data_path      : data/nf-pre/NF-UNSW-NB15-v2-pre.csv
+batch_size     : 64
+epochs         : 300
+hidden_sizes   : (64, 128, 256, 512, 256)
+dropout        : 0.3
+class_weight   : True
+fout           : tmp/metrics.txt
+random_state   : 4444
+
 === Overall Metrics ===
---- Micro F1-score: 0.9834
---- Macro F1-score: 0.5411
---- Overall Accuracy: 0.9834
+--- Micro F1-score: 0.9816
+--- Macro F1-score: 0.5072
+--- Overall Accuracy: 0.9816
 
 === Label Metrics ===
 [Analysis]
--- TP: 291, FP: 1908, TN: 356289, FN: 54
--- Precision: 0.1323 (291 / 2199)
--- Recall: 0.8435 (291 / 345)
--- Specificity: 0.9947 (356289 / 358197)
--- Accuracy: 0.9945
--- F1-score: 0.2288
--- Balanced Accuracy: 91.9076
+-- TP: 1, FP: 11, TN: 358186, FN: 344
+-- Precision: 0.0833 (1 / 12)
+-- Recall: 0.0029 (1 / 345)
+-- Specificity: 1.0000 (358186 / 358197)
+-- Accuracy: 0.9990
+-- F1-score: 0.0056
+-- Balanced Accuracy: 50.1434
 
 [Backdoor]
--- TP: 83, FP: 541, TN: 357676, FN: 242
--- Precision: 0.1330 (83 / 624)
--- Recall: 0.2554 (83 / 325)
--- Specificity: 0.9985 (357676 / 358217)
--- Accuracy: 0.9978
--- F1-score: 0.1749
--- Balanced Accuracy: 62.6937
+-- TP: 299, FP: 2080, TN: 356137, FN: 26
+-- Precision: 0.1257 (299 / 2379)
+-- Recall: 0.9200 (299 / 325)
+-- Specificity: 0.9942 (356137 / 358217)
+-- Accuracy: 0.9941
+-- F1-score: 0.2212
+-- Balanced Accuracy: 95.7097
 
 [Benign]
--- TP: 342590, FP: 47, TN: 14211, FN: 1694
--- Precision: 0.9999 (342590 / 342637)
--- Recall: 0.9951 (342590 / 344284)
--- Specificity: 0.9967 (14211 / 14258)
--- Accuracy: 0.9951
--- F1-score: 0.9975
--- Balanced Accuracy: 99.5892
+-- TP: 342390, FP: 73, TN: 14185, FN: 1894
+-- Precision: 0.9998 (342390 / 342463)
+-- Recall: 0.9945 (342390 / 344284)
+-- Specificity: 0.9949 (14185 / 14258)
+-- Accuracy: 0.9945
+-- F1-score: 0.9971
+-- Balanced Accuracy: 99.4689
 
 [DoS]
--- TP: 150, FP: 646, TN: 357027, FN: 719
--- Precision: 0.1884 (150 / 796)
--- Recall: 0.1726 (150 / 869)
--- Specificity: 0.9982 (357027 / 357673)
--- Accuracy: 0.9962
--- F1-score: 0.1802
--- Balanced Accuracy: 58.5403
+-- TP: 182, FP: 1258, TN: 356415, FN: 687
+-- Precision: 0.1264 (182 / 1440)
+-- Recall: 0.2094 (182 / 869)
+-- Specificity: 0.9965 (356415 / 357673)
+-- Accuracy: 0.9946
+-- F1-score: 0.1576
+-- Balanced Accuracy: 60.2959
 
 [Exploits]
--- TP: 2995, FP: 515, TN: 353294, FN: 1738
--- Precision: 0.8533 (2995 / 3510)
--- Recall: 0.6328 (2995 / 4733)
--- Specificity: 0.9985 (353294 / 353809)
--- Accuracy: 0.9937
--- F1-score: 0.7267
--- Balanced Accuracy: 81.5668
+-- TP: 2702, FP: 637, TN: 353172, FN: 2031
+-- Precision: 0.8092 (2702 / 3339)
+-- Recall: 0.5709 (2702 / 4733)
+-- Specificity: 0.9982 (353172 / 353809)
+-- Accuracy: 0.9926
+-- F1-score: 0.6695
+-- Balanced Accuracy: 78.4542
 
 [Fuzzers]
--- TP: 2900, FP: 1030, TN: 354165, FN: 447
--- Precision: 0.7379 (2900 / 3930)
--- Recall: 0.8664 (2900 / 3347)
--- Specificity: 0.9971 (354165 / 355195)
--- Accuracy: 0.9959
--- F1-score: 0.7970
--- Balanced Accuracy: 93.1774
+-- TP: 2836, FP: 1040, TN: 354155, FN: 511
+-- Precision: 0.7317 (2836 / 3876)
+-- Recall: 0.8473 (2836 / 3347)
+-- Specificity: 0.9971 (354155 / 355195)
+-- Accuracy: 0.9957
+-- F1-score: 0.7853
+-- Balanced Accuracy: 92.2199
 
 [Generic]
--- TP: 1840, FP: 85, TN: 355973, FN: 644
--- Precision: 0.9558 (1840 / 1925)
--- Recall: 0.7407 (1840 / 2484)
--- Specificity: 0.9998 (355973 / 356058)
--- Accuracy: 0.9980
--- F1-score: 0.8347
--- Balanced Accuracy: 87.0251
+-- TP: 1765, FP: 43, TN: 356015, FN: 719
+-- Precision: 0.9762 (1765 / 1808)
+-- Recall: 0.7105 (1765 / 2484)
+-- Specificity: 0.9999 (356015 / 356058)
+-- Accuracy: 0.9979
+-- F1-score: 0.8225
+-- Balanced Accuracy: 85.5213
 
 [Reconnaissance]
--- TP: 1518, FP: 252, TN: 356373, FN: 399
--- Precision: 0.8576 (1518 / 1770)
--- Recall: 0.7919 (1518 / 1917)
--- Specificity: 0.9993 (356373 / 356625)
+-- TP: 1522, FP: 251, TN: 356374, FN: 395
+-- Precision: 0.8584 (1522 / 1773)
+-- Recall: 0.7939 (1522 / 1917)
+-- Specificity: 0.9993 (356374 / 356625)
 -- Accuracy: 0.9982
--- F1-score: 0.8234
--- Balanced Accuracy: 89.5578
+-- F1-score: 0.8249
+-- Balanced Accuracy: 89.6623
 
 [Shellcode]
--- TP: 214, FP: 305, TN: 358023, FN: 0
--- Precision: 0.4123 (214 / 519)
+-- TP: 214, FP: 362, TN: 357966, FN: 0
+-- Precision: 0.3715 (214 / 576)
 -- Recall: 1.0000 (214 / 214)
--- Specificity: 0.9991 (358023 / 358328)
--- Accuracy: 0.9991
--- F1-score: 0.5839
--- Balanced Accuracy: 99.9574
+-- Specificity: 0.9990 (357966 / 358328)
+-- Accuracy: 0.9990
+-- F1-score: 0.5418
+-- Balanced Accuracy: 99.9495
 
 [Worms]
--- TP: 21, FP: 611, TN: 357907, FN: 3
--- Precision: 0.0332 (21 / 632)
+-- TP: 21, FP: 855, TN: 357663, FN: 3
+-- Precision: 0.0240 (21 / 876)
 -- Recall: 0.8750 (21 / 24)
--- Specificity: 0.9983 (357907 / 358518)
--- Accuracy: 0.9983
--- F1-score: 0.0640
--- Balanced Accuracy: 93.6648
+-- Specificity: 0.9976 (357663 / 358518)
+-- Accuracy: 0.9976
+-- F1-score: 0.0467
+-- Balanced Accuracy: 93.6308
 
 >>> CNN-LSTM
 === Model Training Configuration ===

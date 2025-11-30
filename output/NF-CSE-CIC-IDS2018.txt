@@ -3,116 +3,116 @@
 data_path      : data/nf-pre/NF-CSE-CIC-IDS2018-pre.csv
 batch_size     : 64
 epochs         : 300
-hidden_sizes   : (128, 64)
+hidden_sizes   : (64, 128, 256, 512, 256)
 dropout        : 0.3
 class_weight   : True
 fout           : tmp/metrics.txt
 random_state   : 4444
 
 === Overall Metrics ===
---- Micro F1-score: 0.5424
---- Macro F1-score: 0.5954
---- Overall Accuracy: 0.5424
+--- Micro F1-score: 0.5058
+--- Macro F1-score: 0.6190
+--- Overall Accuracy: 0.5058
 
 === Label Metrics ===
 [Benign]
--- TP: 213174, FP: 415, TN: 53393, FN: 183018
--- Precision: 0.9981 (213174 / 213589)
--- Recall: 0.5381 (213174 / 396192)
--- Specificity: 0.9923 (53393 / 53808)
--- Accuracy: 0.5924
--- F1-score: 0.6992
--- Balanced Accuracy: 76.5172
+-- TP: 197444, FP: 333, TN: 53475, FN: 198748
+-- Precision: 0.9983 (197444 / 197777)
+-- Recall: 0.4984 (197444 / 396192)
+-- Specificity: 0.9938 (53475 / 53808)
+-- Accuracy: 0.5576
+-- F1-score: 0.6648
+-- Balanced Accuracy: 74.6083
 
 [Bot]
--- TP: 3404, FP: 0, TN: 446596, FN: 0
--- Precision: 1.0000 (3404 / 3404)
+-- TP: 3404, FP: 2, TN: 446594, FN: 0
+-- Precision: 0.9994 (3404 / 3406)
 -- Recall: 1.0000 (3404 / 3404)
--- Specificity: 1.0000 (446596 / 446596)
+-- Specificity: 1.0000 (446594 / 446596)
 -- Accuracy: 1.0000
--- F1-score: 1.0000
--- Balanced Accuracy: 100.0000
+-- F1-score: 0.9997
+-- Balanced Accuracy: 99.9998
 
 [Brute Force -Web]
--- TP: 13, FP: 3459, TN: 446485, FN: 43
--- Precision: 0.0037 (13 / 3472)
--- Recall: 0.2321 (13 / 56)
--- Specificity: 0.9923 (446485 / 449944)
--- Accuracy: 0.9922
--- F1-score: 0.0074
--- Balanced Accuracy: 61.2228
+-- TP: 11, FP: 1121, TN: 448823, FN: 45
+-- Precision: 0.0097 (11 / 1132)
+-- Recall: 0.1964 (11 / 56)
+-- Specificity: 0.9975 (448823 / 449944)
+-- Accuracy: 0.9974
+-- F1-score: 0.0185
+-- Balanced Accuracy: 59.6969
 
 [Brute Force -XSS]
--- TP: 15, FP: 19971, TN: 430007, FN: 7
--- Precision: 0.0008 (15 / 19986)
--- Recall: 0.6818 (15 / 22)
--- Specificity: 0.9556 (430007 / 449978)
--- Accuracy: 0.9556
--- F1-score: 0.0015
--- Balanced Accuracy: 81.8718
+-- TP: 0, FP: 9, TN: 449969, FN: 22
+-- Precision: 0.0000 (0 / 9)
+-- Recall: 0.0000 (0 / 22)
+-- Specificity: 1.0000 (449969 / 449978)
+-- Accuracy: 0.9999
+-- F1-score: 0.0000
+-- Balanced Accuracy: 49.9990
 
 [DDOS attack-HOIC]
--- TP: 3472, FP: 15, TN: 424255, FN: 22258
--- Precision: 0.9957 (3472 / 3487)
--- Recall: 0.1349 (3472 / 25730)
--- Specificity: 1.0000 (424255 / 424270)
--- Accuracy: 0.9505
--- F1-score: 0.2377
--- Balanced Accuracy: 56.7452
+-- TP: 2542, FP: 9, TN: 424261, FN: 23188
+-- Precision: 0.9965 (2542 / 2551)
+-- Recall: 0.0988 (2542 / 25730)
+-- Specificity: 1.0000 (424261 / 424270)
+-- Accuracy: 0.9485
+-- F1-score: 0.1798
+-- Balanced Accuracy: 54.9387
 
 [DDOS attack-LOIC-UDP]
--- TP: 49, FP: 83, TN: 449867, FN: 1
--- Precision: 0.3712 (49 / 132)
+-- TP: 49, FP: 37, TN: 449913, FN: 1
+-- Precision: 0.5698 (49 / 86)
 -- Recall: 0.9800 (49 / 50)
--- Specificity: 0.9998 (449867 / 449950)
--- Accuracy: 0.9998
--- F1-score: 0.5385
--- Balanced Accuracy: 98.9908
+-- Specificity: 0.9999 (449913 / 449950)
+-- Accuracy: 0.9999
+-- F1-score: 0.7206
+-- Balanced Accuracy: 98.9959
 
 [DDoS attacks-LOIC-HTTP]
--- TP: 7248, FP: 16, TN: 442653, FN: 83
--- Precision: 0.9978 (7248 / 7264)
--- Recall: 0.9887 (7248 / 7331)
--- Specificity: 1.0000 (442653 / 442669)
--- Accuracy: 0.9998
--- F1-score: 0.9932
--- Balanced Accuracy: 99.4321
+-- TP: 7331, FP: 13, TN: 442656, FN: 0
+-- Precision: 0.9982 (7331 / 7344)
+-- Recall: 1.0000 (7331 / 7331)
+-- Specificity: 1.0000 (442656 / 442669)
+-- Accuracy: 1.0000
+-- F1-score: 0.9991
+-- Balanced Accuracy: 99.9985
 
 [DoS attacks-GoldenEye]
--- TP: 667, FP: 114, TN: 449218, FN: 1
--- Precision: 0.8540 (667 / 781)
--- Recall: 0.9985 (667 / 668)
--- Specificity: 0.9997 (449218 / 449332)
--- Accuracy: 0.9997
--- F1-score: 0.9206
--- Balanced Accuracy: 99.9125
+-- TP: 666, FP: 39, TN: 449293, FN: 2
+-- Precision: 0.9447 (666 / 705)
+-- Recall: 0.9970 (666 / 668)
+-- Specificity: 0.9999 (449293 / 449332)
+-- Accuracy: 0.9999
+-- F1-score: 0.9701
+-- Balanced Accuracy: 99.8460
 
 [DoS attacks-Hulk]
--- TP: 10251, FP: 1120, TN: 438561, FN: 68
--- Precision: 0.9015 (10251 / 11371)
--- Recall: 0.9934 (10251 / 10319)
--- Specificity: 0.9975 (438561 / 439681)
--- Accuracy: 0.9974
--- F1-score: 0.9452
--- Balanced Accuracy: 99.5431
+-- TP: 10247, FP: 946, TN: 438735, FN: 72
+-- Precision: 0.9155 (10247 / 11193)
+-- Recall: 0.9930 (10247 / 10319)
+-- Specificity: 0.9978 (438735 / 439681)
+-- Accuracy: 0.9977
+-- F1-score: 0.9527
+-- Balanced Accuracy: 99.5436
 
 [DoS attacks-SlowHTTPTest]
--- TP: 333, FP: 0, TN: 449667, FN: 0
--- Precision: 1.0000 (333 / 333)
+-- TP: 333, FP: 7, TN: 449660, FN: 0
+-- Precision: 0.9794 (333 / 340)
 -- Recall: 1.0000 (333 / 333)
--- Specificity: 1.0000 (449667 / 449667)
+-- Specificity: 1.0000 (449660 / 449667)
 -- Accuracy: 1.0000
--- F1-score: 1.0000
--- Balanced Accuracy: 100.0000
+-- F1-score: 0.9896
+-- Balanced Accuracy: 99.9992
 
 [DoS attacks-Slowloris]
--- TP: 230, FP: 342, TN: 449427, FN: 1
--- Precision: 0.4021 (230 / 572)
--- Recall: 0.9957 (230 / 231)
--- Specificity: 0.9992 (449427 / 449769)
--- Accuracy: 0.9992
--- F1-score: 0.5729
--- Balanced Accuracy: 99.7455
+-- TP: 229, FP: 129, TN: 449640, FN: 2
+-- Precision: 0.6397 (229 / 358)
+-- Recall: 0.9913 (229 / 231)
+-- Specificity: 0.9997 (449640 / 449769)
+-- Accuracy: 0.9997
+-- F1-score: 0.7776
+-- Balanced Accuracy: 99.5528
 
 [FTP-BruteForce]
 -- TP: 616, FP: 1, TN: 449383, FN: 0
@@ -124,31 +124,31 @@ random_state   : 4444
 -- Balanced Accuracy: 99.9999
 
 [Infilteration]
--- TP: 2367, FP: 180327, TN: 266891, FN: 415
--- Precision: 0.0130 (2367 / 182694)
--- Recall: 0.8508 (2367 / 2782)
--- Specificity: 0.5968 (266891 / 447218)
--- Accuracy: 0.5984
--- F1-score: 0.0255
--- Balanced Accuracy: 72.3804
+-- TP: 2452, FP: 196426, TN: 250792, FN: 330
+-- Precision: 0.0123 (2452 / 198878)
+-- Recall: 0.8814 (2452 / 2782)
+-- Specificity: 0.5608 (250792 / 447218)
+-- Accuracy: 0.5628
+-- F1-score: 0.0243
+-- Balanced Accuracy: 72.1081
 
 [SQL Injection]
--- TP: 0, FP: 0, TN: 449988, FN: 12
--- Precision: 0.0000 (0 / 0)
--- Recall: 0.0000 (0 / 12)
--- Specificity: 1.0000 (449988 / 449988)
--- Accuracy: 1.0000
--- F1-score: 0.0000
--- Balanced Accuracy: 50.0000
+-- TP: 12, FP: 23283, TN: 426705, FN: 0
+-- Precision: 0.0005 (12 / 23295)
+-- Recall: 1.0000 (12 / 12)
+-- Specificity: 0.9483 (426705 / 449988)
+-- Accuracy: 0.9483
+-- F1-score: 0.0010
+-- Balanced Accuracy: 97.4129
 
 [SSH-Bruteforce]
--- TP: 2254, FP: 44, TN: 447702, FN: 0
--- Precision: 0.9809 (2254 / 2298)
+-- TP: 2254, FP: 55, TN: 447691, FN: 0
+-- Precision: 0.9762 (2254 / 2309)
 -- Recall: 1.0000 (2254 / 2254)
--- Specificity: 0.9999 (447702 / 447746)
+-- Specificity: 0.9999 (447691 / 447746)
 -- Accuracy: 0.9999
--- F1-score: 0.9903
--- Balanced Accuracy: 99.9951
+-- F1-score: 0.9879
+-- Balanced Accuracy: 99.9939
 
 >>> CNN-LSTM
 === Model Training Configuration ===
