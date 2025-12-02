@@ -47,8 +47,32 @@ class NetFlowLabelEncoder:
         if not self.fitted:
             raise ValueError("NetFlowLabelEncoder not fitted")
         return np.array([self.decoder[int(idx)]] for idx in y_hat)
-        
 
+
+class SparseCategoricalFocalLoss(tf.keras.losses.Loss):
+    def __init__(self, gamma=2.0, alpha=None, from_logits=False,
+                 reduction=tf.keras.losses.Reduction.SUM_OVER_BATCH_SIZE):
+        super().__init__(reduction=reduction)
+        self.gamma = gamma
+        self.alpha = alpha
+        self.from_logits = from_logits
+
+    def call(self, y_true, y_pred):
+        if self.from_logits:
+            y_pred = tf.nn.softmax(y_pred, axis=-1)
+
+        y_true = tf.cast(y_true, tf.int32)
+        pt = tf.gather_nd(y_pred, tf.stack([tf.range(tf.shape(y_pred)[0]), y_true], axis=1))
+
+        if self.alpha is not None:
+            alpha_t = tf.gather(self.alpha, y_true)
+        else:
+            alpha_t = 1.0
+
+        loss = -alpha_t * tf.pow(1.0 - pt, self.gamma) * tf.math.log(pt + 1e-8)
+        return tf.reduce_mean(loss)
+
+    
 # Functions define #
 
 def NetFlowSlicing(df, window_size:int=16):
@@ -85,3 +109,13 @@ def NetFlowBatchLoader(X, y, indices, batch_size:int=32):
         )
     ).prefetch(tf.data.AUTOTUNE)
     return dataset
+
+
+def LabelUnify(df, encoder: dict, default_label: str="Generic"):
+    col = df.columns[-1]
+
+    df[col] = df[col].apply(
+        lambda x: encoder[x] if x in encoder.keys() else default_label
+    )
+
+    return df
