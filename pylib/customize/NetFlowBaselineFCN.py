@@ -20,7 +20,7 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 
 # Data Structures define - class #
-class BaselineFCN(tf.keras.Model):
+class NetFlowBaselineFCN(tf.keras.Model):
     def __init__(self, hidden_sizes=[128, 64], dropout=0.3, num_classes=10):
         super().__init__()
         self.hidden_layer = []
@@ -30,13 +30,14 @@ class BaselineFCN(tf.keras.Model):
 
         self.output_layer = layers.Dense(num_classes, activation="softmax")
         
+    @tf.function
     def call(self, X, training=False):
         for layer in self.hidden_layer:
             X = layer(X, training=training)
         return self.output_layer(X)
 
 # Functions define #
-def BaseBatchLoader(X, y, indices, batch_size:int=32):
+def NetFlowBaseBatchLoader(X, y, indices, batch_size:int=32):
     def generator():
         batch_X, batch_y = [], []
         for index in indices:

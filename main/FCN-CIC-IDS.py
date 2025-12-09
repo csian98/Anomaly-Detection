@@ -35,7 +35,7 @@ from sklearn.utils.class_weight import compute_class_weight
 
 from customize.NetFlowUtility import NetFlowLabelEncoder
 from customize.NetFlowMetrics import PrecisionMetric, RecallMetric, F1Macro, print_result
-from customize.BaselineFCN import BaseBatchLoader, BaselineFCN
+from customize.NetFlowBaselineFCN import NetFlowBaseBatchLoader, NetFlowBaselineFCN
 
 # dup2 #
 #fp = open(f"tmp/{datetime.now().strftime('%Y%m%d%H%M%S')}")
@@ -91,11 +91,11 @@ def main(
     X = array[:, :-1]
     y = array[:, -1].astype(np.int32)
     
-    train_ds = BaseBatchLoader(X, y, np.where(train_mask)[0], batch_size)
-    val_ds = BaseBatchLoader(X, y, np.where(val_mask)[0], batch_size)
-    test_ds = BaseBatchLoader(X, y, np.where(test_mask)[0], batch_size)
+    train_ds = NetFlowBaseBatchLoader(X, y, np.where(train_mask)[0], batch_size)
+    val_ds = NetFlowBaseBatchLoader(X, y, np.where(val_mask)[0], batch_size)
+    test_ds = NetFlowBaseBatchLoader(X, y, np.where(test_mask)[0], batch_size)
     
-    model = BaselineFCN(
+    model = NetFlowBaselineFCN(
         hidden_sizes=hidden_sizes,
         dropout=dropout,
         num_classes=le.size

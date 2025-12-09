@@ -44,7 +44,8 @@ class NetFlowCNNLSTM(tf.keras.Model):
         self.drop4 = layers.Dropout(dropout_rate)
 
         self.classifier = layers.Dense(num_classes, activation="softmax")
-        
+       
+    @tf.function
     def call(self, X, training=False):
         X = self.conv1(X, training=training)
         X = self.bn1(X, training=training)

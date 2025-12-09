@@ -57,6 +57,7 @@ class NetFlowBertClassifier(tf.keras.Model):
         # self.dropout = layers.Dropout(dropout)
         self.classifier = layers.Dense(num_classes, activation="softmax")
 
+    @tf.function
     def call(self, X, training=False):
         X = self.embedding(X)
         for encoder in self.encoders:
